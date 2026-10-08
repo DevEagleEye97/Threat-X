@@ -44,9 +44,9 @@ export function TypewriterStatement() {
   }, [text, deleting, messageIndex]);
 
   return (
-    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] font-mono text-[12px] sm:text-[13px] text-[#A1A7B3] shadow-inner">
-      <span className="text-[#7667E8] font-bold">&gt;</span>
-      <span>{text}</span>
+    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-[rgba(255,255,255,0.12)] bg-[#10151C] font-mono text-[12px] sm:text-[13px] text-[#F5F6F8] shadow-sm">
+      <span className="text-[#8B7CF6] font-bold">&gt;</span>
+      <span className="tracking-wide font-medium">{text}</span>
       <span className="animate-pulse text-[#8B7CF6] font-bold">|</span>
     </div>
   );
