@@ -293,10 +293,10 @@ export default function SecurityPage() {
         </p>
         <div className="pt-2 flex items-center gap-4">
           <a
-            href="https://github.com"
+            href="https://github.com/DevEagleEye97/Threat-X"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs text-[#8B7CF6] hover:text-[#F4F5F7] font-medium"
+            className="inline-flex items-center gap-1.5 text-xs text-[#8B7CF6] hover:text-[#F5F6F8] font-medium"
           >
             <span>Inspect GitHub repository</span>
             <ExternalLink className="h-3 w-3" />

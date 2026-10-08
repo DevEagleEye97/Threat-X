@@ -73,7 +73,7 @@ export function Navbar() {
           </span>
 
           <a
-            href="https://github.com/DevEagleEye97/Threat-X.git"
+            href="https://github.com/DevEagleEye97/Threat-X"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-xs text-[#9CA3AF] hover:text-[#F5F6F8] transition-colors"
@@ -125,7 +125,14 @@ export function Navbar() {
             >
               Security Architecture
             </Link>
-            <span className="font-mono text-[10px]">OPEN SOURCE</span>
+            <a
+              href="https://github.com/DevEagleEye97/Threat-X"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 font-mono text-[11px] text-[#8B7CF6] hover:text-[#F5F6F8]"
+            >
+              <span>GITHUB</span>
+            </a>
           </div>
         </div>
       )}

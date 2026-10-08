@@ -76,7 +76,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/DevEagleEye97/Threat-X"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#F4F5F7] transition-colors"
