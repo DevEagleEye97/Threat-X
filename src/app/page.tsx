@@ -97,24 +97,24 @@ export default function HomePage() {
           /* Primary Security Workstation Landing */
           <div className="space-y-24 animate-in fade-in duration-200">
             {/* HERO SECTION */}
-            <div className="space-y-8 max-w-3xl mx-auto text-center">
+            <div className="space-y-7 max-w-3xl mx-auto text-center">
               {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[rgba(255,255,255,0.07)] bg-[#10151C] text-[11px] font-mono uppercase tracking-widest text-[#A1A7B3]">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[rgba(255,255,255,0.07)] bg-[#10151C] text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.08em] text-[#8B7CF6]">
                 EVIDENCE BEFORE INTERACTION
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F4F5F7] leading-[1.08]">
-                Don’t click it.<br />
-                <span className="text-[#7667E8]">Investigate it.</span>
+              <h1 className="text-5xl sm:text-7xl lg:text-[84px] font-bold tracking-[-0.05em] leading-[0.96] text-[#F5F6F8]">
+                DON’T CLICK IT.<br />
+                <span className="text-[#7667E8]">INVESTIGATE IT.</span>
               </h1>
 
               {/* Subheadline & Supporting Copy */}
-              <div className="space-y-2 max-w-xl mx-auto">
-                <p className="text-base sm:text-lg font-medium text-[#F4F5F7]">
+              <div className="space-y-2.5 max-w-[580px] mx-auto">
+                <p className="text-lg md:text-[20px] font-normal leading-[1.5] text-[#A1A7B3]">
                   See the evidence. Understand the attack. Know what to do next.
                 </p>
-                <p className="text-xs sm:text-sm text-[#A1A7B3] leading-relaxed">
+                <p className="text-[15px] md:text-[16px] font-normal leading-[1.6] text-[#69717F]">
                   Investigate suspicious URLs, messages, screenshots, emails and QR codes before interacting with them.
                 </p>
               </div>
@@ -133,7 +133,7 @@ export default function HomePage() {
                     <button
                       type="button"
                       onClick={handleRetry}
-                      className="px-3 py-1.5 rounded-md text-xs font-medium border border-[rgba(255,255,255,0.09)] bg-[#0B0F14] text-[#F4F5F7] hover:bg-[#141A22] transition-colors"
+                      className="px-3 py-1.5 rounded-md text-xs font-medium border border-[rgba(255,255,255,0.09)] bg-[#0B0F14] text-[#F5F6F8] hover:bg-[#141A22] transition-colors"
                     >
                       Try again
                     </button>
@@ -152,14 +152,14 @@ export default function HomePage() {
 
             {/* PRODUCT PHILOSOPHY SECTION */}
             <div className="border-t border-[rgba(255,255,255,0.07)] pt-16 space-y-10">
-              <div className="text-center space-y-2 max-w-xl mx-auto">
-                <div className="text-[11px] font-mono tracking-widest text-[#7667E8] font-semibold">
+              <div className="text-center space-y-2.5 max-w-2xl mx-auto">
+                <div className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#8B7CF6]">
                   CORE PRINCIPLE
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#F4F5F7]">
-                  Don’t guess. Investigate.
+                <h2 className="text-3xl sm:text-5xl lg:text-[54px] font-bold tracking-[-0.04em] leading-[1.05] text-[#F5F6F8]">
+                  DON’T GUESS.<br className="sm:hidden" /> INVESTIGATE.
                 </h2>
-                <p className="text-xs sm:text-sm text-[#A1A7B3]">
+                <p className="text-[16px] md:text-[17px] font-normal leading-relaxed text-[#9CA3AF]">
                   A deterministic workflow built for evidence-backed clarity.
                 </p>
               </div>
@@ -167,32 +167,32 @@ export default function HomePage() {
               {/* Visual Flow Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#10151C] p-5 space-y-2.5 relative">
-                  <div className="font-mono text-xs text-[#7667E8] font-bold">01 — EVIDENCE</div>
-                  <h3 className="text-sm font-semibold text-[#F4F5F7]">Extract Signals</h3>
+                  <div className="font-mono text-[11px] text-[#7667E8] font-semibold tracking-[0.04em] uppercase">01 — EVIDENCE</div>
+                  <h3 className="text-sm font-semibold text-[#F5F6F8]">Extract Signals</h3>
                   <p className="text-xs text-[#A1A7B3] leading-relaxed">
                     Extract observable indicators from URLs, headers, Punycode, entropy, and message content.
                   </p>
                 </div>
 
                 <div className="rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#10151C] p-5 space-y-2.5 relative">
-                  <div className="font-mono text-xs text-[#7667E8] font-bold">02 — RISK</div>
-                  <h3 className="text-sm font-semibold text-[#F4F5F7]">Assess Severity</h3>
+                  <div className="font-mono text-[11px] text-[#7667E8] font-semibold tracking-[0.04em] uppercase">02 — RISK</div>
+                  <h3 className="text-sm font-semibold text-[#F5F6F8]">Assess Severity</h3>
                   <p className="text-xs text-[#A1A7B3] leading-relaxed">
                     Correlate evidence across intelligence feeds and calculate a deterministic 0–100 score.
                   </p>
                 </div>
 
                 <div className="rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#10151C] p-5 space-y-2.5 relative">
-                  <div className="font-mono text-xs text-[#7667E8] font-bold">03 — ATTACK PATH</div>
-                  <h3 className="text-sm font-semibold text-[#F4F5F7]">Reconstruct Intent</h3>
+                  <div className="font-mono text-[11px] text-[#7667E8] font-semibold tracking-[0.04em] uppercase">03 — ATTACK PATH</div>
+                  <h3 className="text-sm font-semibold text-[#F5F6F8]">Reconstruct Intent</h3>
                   <p className="text-xs text-[#A1A7B3] leading-relaxed">
                     Understand how the attack progresses from delivery lure to credential theft or host impact.
                   </p>
                 </div>
 
                 <div className="rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#10151C] p-5 space-y-2.5 relative">
-                  <div className="font-mono text-xs text-[#7667E8] font-bold">04 — ACTION</div>
-                  <h3 className="text-sm font-semibold text-[#F4F5F7]">Know What To Do</h3>
+                  <div className="font-mono text-[11px] text-[#7667E8] font-semibold tracking-[0.04em] uppercase">04 — ACTION</div>
+                  <h3 className="text-sm font-semibold text-[#F5F6F8]">Know What To Do</h3>
                   <p className="text-xs text-[#A1A7B3] leading-relaxed">
                     Receive tailored, step-by-step incident response guidance tailored to your specific exposure.
                   </p>
@@ -204,20 +204,20 @@ export default function HomePage() {
             <div className="border-t border-[rgba(255,255,255,0.07)] pt-16 space-y-8">
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div className="space-y-1.5">
-                  <div className="text-[11px] font-mono tracking-widest text-[#7667E8] font-semibold">
+                  <div className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#8B7CF6]">
                     THREAT FEED
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#F4F5F7]">
+                  <h2 className="text-2xl sm:text-4xl font-bold tracking-[-0.03em] text-[#F5F6F8]">
                     Threats worth knowing about.
                   </h2>
-                  <p className="text-xs sm:text-sm text-[#A1A7B3]">
+                  <p className="text-[15px] font-normal text-[#9CA3AF]">
                     Understand the scams, delivery methods and patterns appearing in the wild.
                   </p>
                 </div>
 
                 <Link
                   href="/threat-feed"
-                  className="inline-flex items-center gap-1.5 text-xs text-[#8B7CF6] hover:text-[#F4F5F7] font-medium transition-colors shrink-0"
+                  className="inline-flex items-center gap-1.5 text-[14px] text-[#8B7CF6] hover:text-[#F5F6F8] font-medium transition-colors shrink-0"
                 >
                   <span>Explore full threat feed</span>
                   <ArrowRight className="h-3.5 w-3.5" />

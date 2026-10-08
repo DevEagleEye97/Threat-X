@@ -217,12 +217,12 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
                   if (urlError) setUrlError(null);
                 }}
                 placeholder="Paste a suspicious URL, message, or evidence…"
-                className="w-full rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] px-3.5 py-2.5 text-xs sm:text-sm text-[#F4F5F7] placeholder-[#69717F] focus:border-[#7667E8] focus:outline-none transition-colors font-mono"
+                className="w-full rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] px-3.5 py-2.5 text-[14px] md:text-[15px] text-[#E5E7EB] placeholder-[#69717F] focus:border-[#7667E8] focus:outline-none transition-colors font-mono"
               />
             </div>
 
             {urlError && (
-              <div className="flex items-center gap-1.5 text-xs text-[#F05A5A]">
+              <div className="flex items-center gap-1.5 text-xs text-[#F05A5A] font-sans">
                 <AlertCircle className="h-3.5 w-3.5 shrink-0" />
                 <span>{urlError}</span>
               </div>
@@ -231,7 +231,7 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
             <button
               type="submit"
               disabled={isLoading || !urlInput.trim()}
-              className="w-full flex items-center justify-center gap-2 rounded-md bg-[#7667E8] py-2.5 px-4 text-xs sm:text-sm font-semibold text-[#F4F5F7] hover:bg-[#8B7CF6] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 rounded-md bg-[#7667E8] py-2.5 px-4 text-[14px] md:text-[15px] font-medium sm:font-semibold text-[#F5F6F8] hover:bg-[#8B7CF6] transition-colors disabled:opacity-40 disabled:cursor-not-allowed font-sans"
             >
               <span>{isLoading ? 'Investigating…' : 'Investigate →'}</span>
             </button>
@@ -240,7 +240,7 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
 
         {/* Screenshot / Image Upload */}
         {activeTab === 'screenshot' && (
-          <div className="space-y-3">
+          <div className="space-y-3 font-sans">
             <input
               type="file"
               ref={fileInputRef}
@@ -266,10 +266,10 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
                 <Upload className="h-4 w-4" />
               </div>
               <div className="space-y-1">
-                <div className="text-xs font-medium text-[#F4F5F7]">
+                <div className="text-[14px] font-medium text-[#F5F6F8]">
                   {selectedFile ? selectedFile.name : 'Drop screenshot here, or browse file'}
                 </div>
-                <div className="text-[11px] text-[#69717F]">
+                <div className="text-[12px] text-[#69717F]">
                   Supports PNG, JPG, WebP. Payload isolated in memory.
                 </div>
               </div>
@@ -277,7 +277,7 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
 
             {/* Quick Demo Screenshot Samples */}
             <div className="flex items-center gap-2 pt-1 overflow-x-auto">
-              <span className="text-[11px] font-mono text-[#69717F] shrink-0">Sample:</span>
+              <span className="text-[11px] font-mono text-[#69717F] shrink-0 uppercase tracking-wider">Sample:</span>
               <button
                 type="button"
                 onClick={() =>
@@ -287,7 +287,7 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
                     category: 'Deceptive Banking Auth Interface',
                   })
                 }
-                className="px-2.5 py-1 rounded-md text-[11px] font-mono border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] text-[#A1A7B3] hover:text-[#F4F5F7] shrink-0 transition-colors"
+                className="px-2.5 py-1 rounded-md text-[11px] font-mono border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] text-[#A1A7B3] hover:text-[#F5F6F8] shrink-0 transition-colors"
               >
                 Fake Bank Portal Screenshot
               </button>
@@ -297,7 +297,7 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
               type="button"
               disabled={!selectedFile || isLoading}
               onClick={handleScreenshotSubmit}
-              className="w-full flex items-center justify-center gap-2 rounded-md bg-[#7667E8] py-2.5 px-4 text-xs sm:text-sm font-semibold text-[#F4F5F7] hover:bg-[#8B7CF6] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 rounded-md bg-[#7667E8] py-2.5 px-4 text-[14px] md:text-[15px] font-medium sm:font-semibold text-[#F5F6F8] hover:bg-[#8B7CF6] transition-colors disabled:opacity-40 disabled:cursor-not-allowed font-sans"
             >
               <span>{isLoading ? 'Investigating…' : 'Investigate →'}</span>
             </button>
@@ -306,19 +306,19 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
 
         {/* Message Input */}
         {activeTab === 'message' && (
-          <form onSubmit={handleMessageSubmit} className="space-y-3">
+          <form onSubmit={handleMessageSubmit} className="space-y-3 font-sans">
             <textarea
               rows={3}
               value={messageText}
               onChange={(e) => setMessageText(e.target.value)}
               placeholder="Paste suspicious SMS, WhatsApp, Telegram, or Discord message..."
-              className="w-full rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] p-3 text-xs sm:text-sm text-[#F4F5F7] placeholder-[#69717F] focus:border-[#7667E8] focus:outline-none transition-colors"
+              className="w-full rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] p-3 text-[14px] md:text-[15px] text-[#E5E7EB] placeholder-[#69717F] focus:border-[#7667E8] focus:outline-none transition-colors"
             />
 
             <button
               type="submit"
               disabled={isLoading || !messageText.trim()}
-              className="w-full flex items-center justify-center gap-2 rounded-md bg-[#7667E8] py-2.5 px-4 text-xs sm:text-sm font-semibold text-[#F4F5F7] hover:bg-[#8B7CF6] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 rounded-md bg-[#7667E8] py-2.5 px-4 text-[14px] md:text-[15px] font-medium sm:font-semibold text-[#F5F6F8] hover:bg-[#8B7CF6] transition-colors disabled:opacity-40 disabled:cursor-not-allowed font-sans"
             >
               <span>{isLoading ? 'Investigating…' : 'Investigate →'}</span>
             </button>
@@ -327,21 +327,21 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
 
         {/* Email Input */}
         {activeTab === 'email' && (
-          <form onSubmit={handleEmailSubmit} className="space-y-3">
+          <form onSubmit={handleEmailSubmit} className="space-y-3 font-sans">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <input
                 type="text"
                 value={emailSender}
                 onChange={(e) => setEmailSender(e.target.value)}
                 placeholder="Sender (e.g. security-alert@domain-check.cfd)"
-                className="w-full rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] px-3 py-2 text-xs text-[#F4F5F7] placeholder-[#69717F] focus:border-[#7667E8] focus:outline-none font-mono"
+                className="w-full rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] px-3 py-2 text-xs md:text-[13px] text-[#E5E7EB] placeholder-[#69717F] focus:border-[#7667E8] focus:outline-none font-mono"
               />
               <input
                 type="text"
                 value={emailSubject}
                 onChange={(e) => setEmailSubject(e.target.value)}
                 placeholder="Subject Line (e.g. Urgent: Account Restricted)"
-                className="w-full rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] px-3 py-2 text-xs text-[#F4F5F7] placeholder-[#69717F] focus:border-[#7667E8] focus:outline-none"
+                className="w-full rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] px-3 py-2 text-xs md:text-[13px] text-[#E5E7EB] placeholder-[#69717F] focus:border-[#7667E8] focus:outline-none"
               />
             </div>
 
@@ -350,13 +350,13 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
               value={emailBody}
               onChange={(e) => setEmailBody(e.target.value)}
               placeholder="Paste raw email body or suspicious email contents..."
-              className="w-full rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] p-3 text-xs sm:text-sm text-[#F4F5F7] placeholder-[#69717F] focus:border-[#7667E8] focus:outline-none"
+              className="w-full rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] p-3 text-[14px] md:text-[15px] text-[#E5E7EB] placeholder-[#69717F] focus:border-[#7667E8] focus:outline-none"
             />
 
             <button
               type="submit"
               disabled={isLoading || !emailBody.trim()}
-              className="w-full flex items-center justify-center gap-2 rounded-md bg-[#7667E8] py-2.5 px-4 text-xs sm:text-sm font-semibold text-[#F4F5F7] hover:bg-[#8B7CF6] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 rounded-md bg-[#7667E8] py-2.5 px-4 text-[14px] md:text-[15px] font-medium sm:font-semibold text-[#F5F6F8] hover:bg-[#8B7CF6] transition-colors disabled:opacity-40 disabled:cursor-not-allowed font-sans"
             >
               <span>{isLoading ? 'Investigating…' : 'Investigate →'}</span>
             </button>
@@ -365,7 +365,7 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
 
         {/* QR Code Input */}
         {activeTab === 'qr' && (
-          <div className="space-y-3">
+          <div className="space-y-3 font-sans">
             <input
               type="file"
               ref={qrInputRef}
@@ -387,23 +387,25 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
               <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-md bg-[#10151C] border border-[rgba(255,255,255,0.07)] text-[#A1A7B3]">
                 <QrCode className="h-4 w-4" />
               </div>
-              <div className="text-xs font-medium text-[#F4F5F7]">
-                {qrFile ? qrFile.name : 'Upload QR screenshot or image to decode destination'}
-              </div>
-              <div className="text-[11px] text-[#69717F]">
-                Decodes target URL securely without camera or browser redirect.
+              <div className="space-y-1">
+                <div className="text-[14px] font-medium text-[#F5F6F8]">
+                  {qrFile ? qrFile.name : 'Upload QR screenshot or image to decode destination'}
+                </div>
+                <div className="text-[12px] text-[#69717F]">
+                  Decodes target URL securely without camera or browser redirect.
+                </div>
               </div>
             </div>
 
             <div className="flex items-center gap-2 pt-1 overflow-x-auto">
-              <span className="text-[11px] font-mono text-[#69717F] shrink-0">Sample:</span>
+              <span className="text-[11px] font-mono text-[#69717F] shrink-0 uppercase tracking-wider">Sample:</span>
               <button
                 type="button"
                 onClick={() => {
                   setQrFile({ name: 'parking_quish.png', preview: '' });
                   setQrDestination('https://track-package.delivery-notice.example.net/qr-pay');
                 }}
-                className="px-2.5 py-1 rounded-md text-[11px] font-mono border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] text-[#A1A7B3] hover:text-[#F4F5F7] shrink-0 transition-colors"
+                className="px-2.5 py-1 rounded-md text-[11px] font-mono border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] text-[#A1A7B3] hover:text-[#F5F6F8] shrink-0 transition-colors"
               >
                 Quishing Parking QR
               </button>
@@ -413,7 +415,7 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
               type="button"
               disabled={!qrDestination || isLoading}
               onClick={handleQrSubmit}
-              className="w-full flex items-center justify-center gap-2 rounded-md bg-[#7667E8] py-2.5 px-4 text-xs sm:text-sm font-semibold text-[#F4F5F7] hover:bg-[#8B7CF6] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 rounded-md bg-[#7667E8] py-2.5 px-4 text-[14px] md:text-[15px] font-medium sm:font-semibold text-[#F5F6F8] hover:bg-[#8B7CF6] transition-colors disabled:opacity-40 disabled:cursor-not-allowed font-sans"
             >
               <span>{isLoading ? 'Investigating…' : 'Investigate →'}</span>
             </button>
@@ -422,16 +424,16 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
       </div>
 
       {/* Subtitle / Trust Architecture */}
-      <div className="text-center text-xs text-[#A1A7B3] tracking-tight">
+      <div className="text-center text-[13px] text-[#69717F] font-sans">
         No account required · Open source · Evidence-based
       </div>
 
       {/* Try An Example (Demo Vectors) */}
-      <div className="pt-2 space-y-2">
-        <div className="flex items-center justify-center gap-1.5 text-[11px] font-mono text-[#69717F]">
+      <div className="pt-2 space-y-2.5 font-sans">
+        <div className="flex items-center justify-center gap-1.5 text-[11px] font-mono text-[#69717F] uppercase tracking-wider">
           <span>TRY AN EXAMPLE</span>
           <span>·</span>
-          <span className="text-[#A1A7B3]">DEMO VECTORS</span>
+          <span className="text-[#8B7CF6]">DEMO VECTORS</span>
         </div>
         <div className="flex items-center justify-center flex-wrap gap-2 text-xs">
           {DEMO_EXAMPLES.map((ex) => (
@@ -444,7 +446,7 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
                 if (ex.type === 'message') setMessageText(ex.content);
                 onSubmit({ type: ex.type, content: ex.content });
               }}
-              className="px-2.5 py-1 rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] text-[#A1A7B3] hover:text-[#F4F5F7] hover:border-[rgba(255,255,255,0.16)] text-[11px] transition-colors font-mono"
+              className="px-2.5 py-1 rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] text-[#A1A7B3] hover:text-[#F5F6F8] hover:border-[rgba(255,255,255,0.16)] text-[12px] transition-colors font-mono"
             >
               {ex.label}
             </button>

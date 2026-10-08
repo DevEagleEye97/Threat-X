@@ -28,8 +28,8 @@ export function Navbar() {
             <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#7667E8]/12 text-[#8B7CF6] border border-[#7667E8]/25 group-hover:border-[#7667E8]/50 transition-colors">
               <Shield className="h-3.5 w-3.5" />
             </div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="font-bold tracking-wider text-[#F4F5F7] text-sm">
+            <div className="flex items-baseline">
+              <span className="font-semibold text-[19px] tracking-[-0.02em] text-[#F5F6F8]">
                 THREAT<span className="text-[#7667E8]">X</span>
               </span>
             </div>
@@ -45,10 +45,10 @@ export function Navbar() {
                 key={item.label}
                 href={item.href}
                 className={cn(
-                  'px-3 py-1.5 rounded-md text-[13px] font-medium transition-colors',
+                  'px-3 py-1.5 rounded-md text-[14px] font-medium transition-colors relative',
                   isActive
-                    ? 'bg-[#10151C] text-[#F4F5F7] border border-[rgba(255,255,255,0.09)]'
-                    : 'text-[#A1A7B3] hover:text-[#F4F5F7] hover:bg-[#0B0F14]'
+                    ? 'bg-[#10151C] text-[#F5F6F8] border border-[rgba(255,255,255,0.09)] shadow-sm'
+                    : 'text-[#9CA3AF] hover:text-[#F5F6F8] hover:bg-[#0B0F14]'
                 )}
               >
                 {item.label}
@@ -58,25 +58,25 @@ export function Navbar() {
         </nav>
 
         {/* Right side utilities */}
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3.5 md:flex">
           <Link
             href="/security"
-            className="text-[13px] text-[#A1A7B3] hover:text-[#F4F5F7] transition-colors"
+            className="text-[14px] font-medium text-[#9CA3AF] hover:text-[#F5F6F8] transition-colors"
           >
             Security
           </Link>
 
-          <span className="h-3 w-px bg-[rgba(255,255,255,0.08)]" />
+          <span className="h-3.5 w-px bg-[rgba(255,255,255,0.08)]" />
 
-          <span className="px-2 py-0.5 rounded text-[10px] font-mono tracking-wider border border-[rgba(255,255,255,0.07)] bg-[#10151C] text-[#A1A7B3]">
+          <span className="px-2 py-0.5 rounded text-[11px] font-mono tracking-[0.05em] border border-[rgba(255,255,255,0.07)] bg-[#10151C] text-[#A1A7B3]">
             OPEN SOURCE
           </span>
 
           <a
-            href="https://github.com"
+            href="https://github.com/DevEagleEye97/Threat-X.git"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-[#A1A7B3] hover:text-[#F4F5F7] transition-colors"
+            className="flex items-center gap-1.5 text-xs text-[#9CA3AF] hover:text-[#F5F6F8] transition-colors"
             title="GitHub Repository"
           >
             <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
