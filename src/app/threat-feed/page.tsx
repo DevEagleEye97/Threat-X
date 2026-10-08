@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Rss,
   Search,
@@ -13,6 +14,11 @@ import {
   CheckCircle2,
   Calendar,
   Globe2,
+  Maximize2,
+  X,
+  Layers,
+  Cpu,
+  Eye,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -32,6 +38,7 @@ export interface ThreatStory {
   source: string;
   sourceUrl?: string;
   summary: string;
+  imageUrl?: string;
   deliveryVector: string;
   observedTechniques: string[];
   indicators: string[];
@@ -56,6 +63,7 @@ const THREAT_STORIES: ThreatStory[] = [
     lastCheckedDate: '08 Oct 2026',
     source: 'Mumbai Crime Branch & I4C Cyber Briefing',
     sourceUrl: 'https://cybercrime.gov.in',
+    imageUrl: '/images/threat-feed/apk-factory.jpg',
     summary:
       'Mumbai Crime Branch reported the arrest of an alleged developer producing over 2,800 malicious APKs supplied to fraud syndicates. Payloads disguised as senior-citizen verification, pension life-certificates, and banking utilities impacted over 9,600 verified victims.',
     deliveryVector: 'Unsolicited WhatsApp messaging with urgent pension/senior-citizen verification lures',
@@ -84,6 +92,7 @@ const THREAT_STORIES: ThreatStory[] = [
     lastCheckedDate: '08 Oct 2026',
     source: 'BleepingComputer Threat Research',
     sourceUrl: 'https://www.bleepingcomputer.com',
+    imageUrl: '/images/threat-feed/ai-phishing.jpg',
     summary:
       'A global credential-harvesting campaign creates look-alike portals impersonating major AI platforms (ChatGPT, Gemini, Claude, Perplexity). Attackers utilize browser-in-browser simulation to capture live session tokens and MFA codes from advertising and enterprise account holders.',
     deliveryVector: 'Sponsored search ads and deceptive social media links offering fake premium AI capabilities',
@@ -112,6 +121,7 @@ const THREAT_STORIES: ThreatStory[] = [
     lastCheckedDate: '08 Oct 2026',
     source: 'The Record from Recorded Future',
     sourceUrl: 'https://therecord.media',
+    imageUrl: '/images/threat-feed/clickfix-stealer.jpg',
     summary:
       'Over 100 compromised legitimate websites present fake Cloudflare verification pages instructing visitors to paste and run a PowerShell command to "verify they are human", directly executing the Lunex password and crypto wallet stealer in memory.',
     deliveryVector: 'Injected JavaScript overlays on compromised WordPress and commercial web properties',
@@ -140,6 +150,7 @@ const THREAT_STORIES: ThreatStory[] = [
     lastCheckedDate: '08 Oct 2026',
     source: 'EPFO Official Advisory & LiveMint',
     sourceUrl: 'https://www.livemint.com',
+    imageUrl: '/images/threat-feed/identity-phish.jpg',
     summary:
       'The Employees\' Provident Fund Organisation issued a nationwide security alert advising members against deceptive SMS links harvesting UAN, Aadhaar, PAN, and banking credentials under the guise of annual passbook updates.',
     deliveryVector: 'SMS broadcast claiming urgent UAN KYC verification deadline or claim sanction',
@@ -168,6 +179,7 @@ const THREAT_STORIES: ThreatStory[] = [
     lastCheckedDate: '08 Oct 2026',
     source: 'I4C & Ministry of Cyber Affairs',
     sourceUrl: 'https://cybercrime.gov.in',
+    imageUrl: '/images/threat-feed/trading-scam.jpg',
     summary:
       'I4C highlighted targeted campaigns where sponsored social media ads promote automated AI cryptocurrency trading. Registration pages prompt victims for an SMS "verification code" which is secretly the official Instagram account takeover OTP.',
     deliveryVector: 'Sponsored Instagram/Facebook feed ads promising high-yield automated AI trading',
@@ -196,6 +208,7 @@ const THREAT_STORIES: ThreatStory[] = [
     lastCheckedDate: '08 Oct 2026',
     source: 'ESET Threat Research',
     sourceUrl: 'https://www.eset.com',
+    imageUrl: '/images/threat-feed/matchboil-apt.jpg',
     summary:
       'ESET researchers detailed updated activity for MATCHBOIL, a sophisticated C# downloader utilized in persistent cyber campaigns. New iterations implement .NET Reactor anti-analysis obfuscation and establish multi-stage registry persistence.',
     deliveryVector: 'Spear-phishing emails containing malicious ISO or ZIP attachments disguised as contracts',
@@ -237,12 +250,68 @@ const THREAT_STORIES: ThreatStory[] = [
   },
 ];
 
+/**
+ * High-Tech Forensic Image / Diagram Placeholder for Threats without explicit static images
+ */
+function ForensicVisualPlaceholder({ story }: { story: ThreatStory }) {
+  return (
+    <div className="relative w-full aspect-video md:aspect-[21/9] rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#0B0F14] overflow-hidden flex flex-col justify-between p-5 select-none">
+      {/* Background Cyber Blueprint Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293d0a_1px,transparent_1px),linear-gradient(to_bottom,#1f293d0a_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
+      
+      {/* Glow highlight */}
+      <div className="absolute -top-24 -right-24 w-60 h-60 bg-[#7667E8]/10 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Top Telemetry Header */}
+      <div className="relative z-10 flex items-center justify-between text-xs font-mono">
+        <div className="flex items-center gap-2 text-[#8B7CF6]">
+          <Cpu className="h-4 w-4 animate-pulse" />
+          <span className="tracking-wider uppercase font-semibold">VECTOR SCHEMATIC · {story.platform}</span>
+        </div>
+        <span className="px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider bg-[#10151C] border border-[rgba(255,255,255,0.08)] text-[#A1A7B3]">
+          {story.category}
+        </span>
+      </div>
+
+      {/* Center Schematic Nodes */}
+      <div className="relative z-10 flex items-center justify-center my-auto py-2">
+        <div className="w-full max-w-md flex items-center justify-between gap-2 px-4 py-3 rounded-md bg-[#10151C]/90 border border-[rgba(255,255,255,0.07)] backdrop-blur-sm shadow-inner">
+          <div className="flex flex-col items-center gap-1">
+            <span className="h-2.5 w-2.5 rounded-full bg-[#7667E8]" />
+            <span className="text-[10px] font-mono text-[#A1A7B3]">INGESTION</span>
+          </div>
+          <span className="text-[#69717F] font-mono text-xs">──►</span>
+          <div className="flex flex-col items-center gap-1">
+            <span className="h-2.5 w-2.5 rounded-full bg-[#D8A84E]" />
+            <span className="text-[10px] font-mono text-[#A1A7B3]">DECONSTRUCT</span>
+          </div>
+          <span className="text-[#69717F] font-mono text-xs">──►</span>
+          <div className="flex flex-col items-center gap-1">
+            <span className="h-2.5 w-2.5 rounded-full bg-[#F05A5A] animate-ping" />
+            <span className="text-[10px] font-mono text-[#F05A5A] font-bold">EXPLOITATION</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Status Bar */}
+      <div className="relative z-10 flex items-center justify-between text-[11px] font-mono text-[#69717F] border-t border-[rgba(255,255,255,0.06)] pt-3">
+        <span className="truncate max-w-[280px]">PAYLOAD: {story.deliveryVector}</span>
+        <span className="text-[#8B7CF6] flex items-center gap-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#59B98A]" />
+          TELEMETRY CAPTURE
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function ThreatFeedPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedRegion, setSelectedRegion] = useState<string>('All');
   const [selectedProvenance, setSelectedProvenance] = useState<string>('All');
   const [selectedRisk, setSelectedRisk] = useState<string>('All');
+  const [activeLightboxImage, setActiveLightboxImage] = useState<{ src: string; title: string; source: string } | null>(null);
 
   const categories = ['All', 'Malware', 'Phishing', 'Mobile Fraud', 'Account Takeover', 'Identity Theft', 'APT'];
   const regions = ['All', 'India', 'Global'];
@@ -287,7 +356,7 @@ export default function ThreatFeedPage() {
             <div className="rounded-lg border border-[rgba(255,255,255,0.09)] bg-[#10151C] p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
               <div className="flex items-center gap-2 text-[#59B98A] font-mono font-medium">
                 <span className="h-2 w-2 rounded-full bg-[#59B98A] animate-pulse" />
-                <span>LIVE THREAT INTELLIGENCE · Updated 08 Oct 2026 · 21:52 IST</span>
+                <span>LIVE THREAT INTELLIGENCE · Updated 08 Oct 2026 · 22:30 IST</span>
               </div>
               <div className="text-[#9CA3AF] text-[12px]">
                 Sources attributed (I4C · CERT-In · ESET · BleepingComputer · The Record)
@@ -298,34 +367,31 @@ export default function ThreatFeedPage() {
 
         {/* SEARCH & FILTERS */}
         <div className="space-y-4 rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#10151C] p-5">
-          {/* Search bar */}
+          {/* Search Input */}
           <div className="relative">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#69717F]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search threat title, indicator, source (e.g. APK, Cloudflare, EPFO, Instagram)..."
-              className="w-full rounded-md border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] pl-10 pr-4 py-2.5 text-[14px] text-[#F5F6F8] placeholder-[#69717F] focus:border-[#7667E8] focus:outline-none font-sans"
+              placeholder="Search threat reports, malware types, indicators (e.g., APK, EPFO, ClickFix, Instagram, OTP)..."
+              className="w-full rounded-md border border-[rgba(255,255,255,0.08)] bg-[#0B0F14] pl-10 pr-4 py-2.5 text-sm text-[#F5F6F8] placeholder-[#69717F] focus:border-[#7667E8] focus:outline-none focus:ring-1 focus:ring-[#7667E8] font-sans"
             />
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-3 pt-2 text-xs border-t border-[rgba(255,255,255,0.06)]">
-            <div className="flex items-center gap-1.5 text-[#69717F] font-mono text-[11px] uppercase tracking-wider shrink-0">
-              <Filter className="h-3 w-3" />
-              <span>Category:</span>
-            </div>
-            <div className="flex flex-wrap gap-1.5">
+          {/* Category, Region, Provenance Filter Chips */}
+          <div className="flex flex-wrap items-center gap-4 pt-2 border-t border-[rgba(255,255,255,0.06)]">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-[#69717F] font-mono text-[11px] uppercase tracking-wider">Category:</span>
               {categories.map((cat) => (
                 <button
                   key={cat}
                   type="button"
                   onClick={() => setSelectedCategory(cat)}
                   className={cn(
-                    'px-2.5 py-1 rounded-md text-[12px] font-medium transition-colors',
+                    'px-2.5 py-1 rounded-md text-[11px] font-mono transition-colors',
                     selectedCategory === cat
-                      ? 'bg-[#7667E8]/20 text-[#F5F6F8] border border-[#7667E8]/40'
+                      ? 'bg-[#141A22] text-[#8B7CF6] border border-[#7667E8]/40'
                       : 'bg-[#0B0F14] text-[#A1A7B3] hover:text-[#F5F6F8] border border-[rgba(255,255,255,0.06)]'
                   )}
                 >
@@ -333,10 +399,7 @@ export default function ThreatFeedPage() {
                 </button>
               ))}
             </div>
-          </div>
 
-          {/* Region & Provenance Filters */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-2 text-xs">
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-[#69717F] font-mono text-[11px] uppercase tracking-wider">Region:</span>
               {regions.map((reg) => (
@@ -384,7 +447,7 @@ export default function ThreatFeedPage() {
             <span className="font-mono text-[11px]">OCTOBER 2026 RELEASES</span>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-8">
             {filteredStories.map((story) => {
               const isCritical = story.risk === 'Critical';
               const isHigh = story.risk === 'High';
@@ -392,7 +455,7 @@ export default function ThreatFeedPage() {
               return (
                 <article
                   key={story.id}
-                  className="rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#10151C] p-6 sm:p-7 space-y-5 hover:border-[rgba(255,255,255,0.15)] transition-all shadow-md"
+                  className="rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#10151C] p-6 sm:p-7 space-y-6 hover:border-[rgba(255,255,255,0.15)] transition-all shadow-md overflow-hidden"
                 >
                   {/* Metadata Header */}
                   <div className="flex flex-wrap items-center justify-between gap-3 text-xs border-b border-[rgba(255,255,255,0.07)] pb-4">
@@ -445,6 +508,56 @@ export default function ThreatFeedPage() {
                     <p className="text-[14px] sm:text-[15px] text-[#A1A7B3] leading-relaxed font-sans">
                       {story.summary}
                     </p>
+                  </div>
+
+                  {/* FORENSIC THREAT IMAGE / PLACEHOLDER */}
+                  <div className="relative group">
+                    {story.imageUrl ? (
+                      <div className="relative w-full aspect-video md:aspect-[21/9] rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#0B0F14] overflow-hidden">
+                        <Image
+                          src={story.imageUrl}
+                          alt={story.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.01]"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1100px"
+                        />
+                        
+                        {/* Overlay Gradient & Badge */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F14]/90 via-[#0B0F14]/20 to-transparent pointer-events-none" />
+
+                        {/* Top Forensic Badge */}
+                        <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
+                          <span className="px-2.5 py-1 rounded bg-[#0B0F14]/85 border border-[rgba(255,255,255,0.12)] text-[10px] font-mono text-[#8B7CF6] uppercase tracking-wider backdrop-blur-md flex items-center gap-1.5 shadow-sm">
+                            <Layers className="h-3 w-3" />
+                            TECHNICAL FORENSIC VISUAL
+                          </span>
+                        </div>
+
+                        {/* Bottom Bar with Expand button */}
+                        <div className="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-between text-xs">
+                          <span className="text-[11px] font-mono text-[#A1A7B3] bg-[#0B0F14]/80 px-2.5 py-1 rounded backdrop-blur-sm border border-[rgba(255,255,255,0.06)] truncate max-w-[260px] sm:max-w-md">
+                            Evidence source: {story.source}
+                          </span>
+
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setActiveLightboxImage({
+                                src: story.imageUrl!,
+                                title: story.title,
+                                source: story.source,
+                              })
+                            }
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#7667E8] hover:bg-[#8B7CF6] text-[#F5F6F8] text-xs font-mono transition-colors shadow-md backdrop-blur-sm"
+                          >
+                            <Maximize2 className="h-3.5 w-3.5" />
+                            <span>Inspect Diagram</span>
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <ForensicVisualPlaceholder story={story} />
+                    )}
                   </div>
 
                   {/* Source Provenance */}
@@ -540,6 +653,51 @@ export default function ThreatFeedPage() {
           </div>
         </div>
       </div>
+
+      {/* FULL-SCREEN LIGHTBOX MODAL */}
+      {activeLightboxImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setActiveLightboxImage(null)}
+        >
+          <div
+            className="relative max-w-5xl w-full bg-[#10151C] border border-[rgba(255,255,255,0.15)] rounded-xl overflow-hidden shadow-2xl space-y-3 p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-[rgba(255,255,255,0.08)] pb-3">
+              <div className="space-y-0.5">
+                <div className="text-xs font-mono uppercase text-[#8B7CF6] font-semibold tracking-wider">
+                  FORENSIC SCHEMATIC INSPECTION
+                </div>
+                <div className="text-sm font-bold text-[#F5F6F8]">{activeLightboxImage.title}</div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setActiveLightboxImage(null)}
+                className="p-1.5 rounded-md text-[#A1A7B3] hover:text-[#F5F6F8] hover:bg-[#141A22] transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-[#0B0F14]">
+              <Image
+                src={activeLightboxImage.src}
+                alt={activeLightboxImage.title}
+                fill
+                className="object-contain"
+                sizes="(max-width: 1200px) 95vw, 1200px"
+              />
+            </div>
+
+            <div className="flex items-center justify-between text-xs font-mono text-[#69717F] pt-1">
+              <span>Source: {activeLightboxImage.source}</span>
+              <span>THREATX THREAT INTELLIGENCE REPOSITORY</span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
