@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Shield } from 'lucide-react';
+import { TypewriterStatement } from '@/components/layout/TypewriterStatement';
 
 export function Footer() {
   return (
@@ -7,21 +8,24 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           {/* Brand Col */}
-          <div className="space-y-3 md:col-span-2">
+          <div className="space-y-4 md:col-span-2">
             <div className="flex items-center gap-2">
               <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[#7667E8]/12 text-[#8B7CF6] border border-[#7667E8]/25">
                 <Shield className="h-3 w-3" />
               </div>
-              <span className="font-bold text-sm tracking-wider text-[#F4F5F7]">
+              <span className="font-semibold text-sm tracking-[-0.02em] text-[#F5F6F8]">
                 THREAT<span className="text-[#7667E8]">X</span>
               </span>
             </div>
-            <p className="text-sm font-semibold text-[#F4F5F7]">
+            <p className="text-[14px] font-medium text-[#F5F6F8]">
               Don&apos;t click it. Investigate it.
             </p>
-            <p className="text-xs text-[#69717F] max-w-sm leading-relaxed">
+            <p className="text-xs text-[#69717F] max-w-sm leading-relaxed font-sans">
               Open-source digital threat investigation platform enabling secure, air-gapped inspection of untrusted digital content before interaction.
             </p>
+            <div className="pt-1">
+              <TypewriterStatement />
+            </div>
           </div>
 
           {/* Navigation Links */}
