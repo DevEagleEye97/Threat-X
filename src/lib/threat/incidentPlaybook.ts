@@ -1,0 +1,172 @@
+import { UserIncidentState, IncidentActionStep } from '@/types/investigation';
+
+export const INCIDENT_PLAYBOOKS: Record<UserIncidentState, IncidentActionStep[]> = {
+  not_opened: [
+    {
+      step: 1,
+      title: 'Do not open the suspicious link or attachment',
+      instruction: 'Delete the suspicious message, email, or post immediately. Do not test or inspect it manually.',
+      priority: 'immediate',
+      actionType: 'report_incident',
+    },
+    {
+      step: 2,
+      title: 'Do not reply or engage with sender',
+      instruction: 'Replying confirms your contact address is active and often triggers automated follow-up attacks.',
+      priority: 'immediate',
+      actionType: 'report_incident',
+    },
+    {
+      step: 3,
+      title: 'Report and block the sender',
+      instruction: 'Use your email provider or phone messaging report feature to flag as spam/phishing and block the sender.',
+      priority: 'standard',
+      actionType: 'report_incident',
+    },
+  ],
+  opened_link: [
+    {
+      step: 1,
+      title: 'Immediately close browser tab',
+      instruction: 'Close the browser tab without interacting with any dialogs, prompts, or download requests.',
+      priority: 'immediate',
+      actionType: 'session_revocation',
+    },
+    {
+      step: 2,
+      title: 'Clear recent browser cookies & cache',
+      instruction: 'Clear browser cookies and session storage for the past 2 hours to clear potential session tracking beacons.',
+      priority: 'high',
+      actionType: 'session_revocation',
+    },
+    {
+      step: 3,
+      title: 'Run a device antivirus or security scan',
+      instruction: 'Initiate a quick scan with your endpoint security software to ensure no background payload was delivered.',
+      priority: 'standard',
+      actionType: 'endpoint_scan',
+    },
+  ],
+  entered_password: [
+    {
+      step: 1,
+      title: 'Change password on legitimate service immediately',
+      instruction: 'Navigate directly to the official website by typing the URL manually (do not click notification links) and change your password.',
+      priority: 'immediate',
+      actionType: 'password_reset',
+    },
+    {
+      step: 2,
+      title: 'Revoke active sessions & sign out everywhere',
+      instruction: 'Access security settings on the official service and click "Sign out of all sessions" to terminate adversary session tokens.',
+      priority: 'immediate',
+      actionType: 'session_revocation',
+    },
+    {
+      step: 3,
+      title: 'Enable / re-verify Multi-Factor Authentication (MFA)',
+      instruction: 'Enforce an authenticator app (TOTP/FIDO2) rather than SMS where available.',
+      priority: 'high',
+      actionType: 'mfa_rotation',
+    },
+    {
+      step: 4,
+      title: 'Review account security and recovery settings',
+      instruction: 'Verify that no unauthorized recovery emails, phone numbers, or forwarding rules were added in the last 24 hours.',
+      priority: 'standard',
+      actionType: 'report_incident',
+    },
+  ],
+  entered_otp: [
+    {
+      step: 1,
+      title: 'Immediate session revocation',
+      instruction: 'Adversary proxies operate in real-time. Immediately log in on the official service and terminate active sessions to disconnect the attacker session.',
+      priority: 'immediate',
+      actionType: 'session_revocation',
+    },
+    {
+      step: 2,
+      title: 'Reset password and rotate MFA secret keys',
+      instruction: 'Change your password and re-pair your authenticator app to invalidate compromised rolling codes.',
+      priority: 'immediate',
+      actionType: 'mfa_rotation',
+    },
+    {
+      step: 3,
+      title: 'Alert provider security desk',
+      instruction: 'Notify the provider that an Adversary-in-the-Middle (AiTM) OTP interception incident took place on your account.',
+      priority: 'high',
+      actionType: 'report_incident',
+    },
+  ],
+  entered_payment: [
+    {
+      step: 1,
+      title: 'Contact bank or card issuer via official phone number',
+      instruction: 'Call the number on the back of your physical card or official banking app immediately.',
+      priority: 'immediate',
+      actionType: 'bank_contact',
+    },
+    {
+      step: 2,
+      title: 'Freeze or block the affected payment card',
+      instruction: 'Freeze the debit or credit card instantly inside your banking app to prevent unauthorized charges.',
+      priority: 'immediate',
+      actionType: 'bank_contact',
+    },
+    {
+      step: 3,
+      title: 'Monitor recent and pending transactions',
+      instruction: 'Review transactions daily over the next 14 days and dispute any unauthorized charge immediately.',
+      priority: 'high',
+      actionType: 'bank_contact',
+    },
+  ],
+  downloaded_file: [
+    {
+      step: 1,
+      title: 'Disconnect device from network',
+      instruction: 'Disconnect Wi-Fi or unplug Ethernet cable immediately to prevent malware communication with Command & Control servers.',
+      priority: 'immediate',
+      actionType: 'endpoint_scan',
+    },
+    {
+      step: 2,
+      title: 'Do not open or extract downloaded file',
+      instruction: 'Delete the downloaded file from your Downloads folder without opening or unzipping it.',
+      priority: 'immediate',
+      actionType: 'endpoint_scan',
+    },
+    {
+      step: 3,
+      title: 'Run a full offline system scan',
+      instruction: 'Perform a comprehensive offline system scan using your antivirus tool to detect and isolate hidden payloads.',
+      priority: 'high',
+      actionType: 'endpoint_scan',
+    },
+  ],
+  sent_money: [
+    {
+      step: 1,
+      title: 'Immediately contact bank / financial institution',
+      instruction: 'Call the bank or transfer provider fraud division and request an emergency wire or transaction recall.',
+      priority: 'immediate',
+      actionType: 'bank_contact',
+    },
+    {
+      step: 2,
+      title: 'File formal cybercrime report',
+      instruction: 'Submit an incident report to IC3 (Internet Crime Complaint Center) or your local cybercrime authority with transaction timestamps and beneficiary accounts.',
+      priority: 'immediate',
+      actionType: 'report_incident',
+    },
+    {
+      step: 3,
+      title: 'Preserve all communications and receipts',
+      instruction: 'Take screenshots of all chats, transaction receipts, and headers to serve as evidence for fraud resolution.',
+      priority: 'standard',
+      actionType: 'report_incident',
+    },
+  ],
+};
