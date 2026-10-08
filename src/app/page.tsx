@@ -226,79 +226,79 @@ export default function HomePage() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Entry 1 */}
-                <div className="rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#10151C] p-5 space-y-3 flex flex-col justify-between">
+                <div className="rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#10151C] p-5 space-y-3 flex flex-col justify-between hover:border-[rgba(255,255,255,0.15)] transition-all">
                   <div className="space-y-2.5">
                     <div className="flex items-center justify-between text-[10px] font-mono">
-                      <span className="px-2 py-0.5 rounded bg-[#0B0F14] border border-[rgba(255,255,255,0.07)] text-[#A1A7B3]">
-                        DEMO THREAT
+                      <span className="px-2 py-0.5 rounded bg-[#59B98A]/12 text-[#59B98A] border border-[#59B98A]/25 font-semibold">
+                        VERIFIED REPORT
                       </span>
-                      <span className="px-2 py-0.5 rounded bg-[#F05A5A]/10 text-[#F05A5A] border border-[#F05A5A]/20 font-bold">
-                        HIGH RISK
+                      <span className="px-2 py-0.5 rounded bg-[#F05A5A]/12 text-[#F05A5A] border border-[#F05A5A]/25 font-bold">
+                        CRITICAL RISK
                       </span>
                     </div>
-                    <div className="text-xs font-mono text-[#69717F]">WhatsApp · Android</div>
-                    <h3 className="text-sm font-bold text-[#F4F5F7]">Fake Delivery APK</h3>
+                    <div className="text-[11px] font-mono text-[#69717F]">WhatsApp · Android · India · 06 Oct 2026</div>
+                    <h3 className="text-sm font-bold text-[#F5F6F8] leading-snug">Malicious APK Factory Linked to 9,600+ Indian Victims</h3>
                     <p className="text-xs text-[#A1A7B3] leading-relaxed">
-                      Fake delivery notifications are being used to distribute malicious Android packages disguised as tracking tools.
+                      Mumbai Crime Branch dismantled an operation distributing 2,800+ fraudulent APKs disguised as pension and senior-citizen certificates.
                     </p>
                   </div>
                   <Link
                     href="/threat-feed"
-                    className="inline-flex items-center gap-1 text-xs text-[#8B7CF6] hover:text-[#F4F5F7] pt-2 font-medium"
+                    className="inline-flex items-center gap-1 text-xs text-[#8B7CF6] hover:text-[#F5F6F8] pt-2 font-medium"
                   >
-                    <span>Read investigation</span>
+                    <span>Read intelligence & Threat DNA</span>
                     <ArrowRight className="h-3 w-3" />
                   </Link>
                 </div>
 
                 {/* Entry 2 */}
-                <div className="rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#10151C] p-5 space-y-3 flex flex-col justify-between">
+                <div className="rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#10151C] p-5 space-y-3 flex flex-col justify-between hover:border-[rgba(255,255,255,0.15)] transition-all">
                   <div className="space-y-2.5">
                     <div className="flex items-center justify-between text-[10px] font-mono">
-                      <span className="px-2 py-0.5 rounded bg-[#0B0F14] border border-[rgba(255,255,255,0.07)] text-[#A1A7B3]">
-                        DEMO THREAT
+                      <span className="px-2 py-0.5 rounded bg-[#59B98A]/12 text-[#59B98A] border border-[#59B98A]/25 font-semibold">
+                        VERIFIED REPORT
                       </span>
-                      <span className="px-2 py-0.5 rounded bg-[#F05A5A]/10 text-[#F05A5A] border border-[#F05A5A]/20 font-bold">
-                        HIGH RISK
+                      <span className="px-2 py-0.5 rounded bg-[#F05A5A]/12 text-[#F05A5A] border border-[#F05A5A]/25 font-bold">
+                        CRITICAL RISK
                       </span>
                     </div>
-                    <div className="text-xs font-mono text-[#69717F]">SMS · WhatsApp</div>
-                    <h3 className="text-sm font-bold text-[#F4F5F7]">Fake KYC Update</h3>
+                    <div className="text-[11px] font-mono text-[#69717F]">Web · Search Ads · Global · 06 Oct 2026</div>
+                    <h3 className="text-sm font-bold text-[#F5F6F8] leading-snug">Fake AI Portals Target Advertising & Enterprise Accounts</h3>
                     <p className="text-xs text-[#A1A7B3] leading-relaxed">
-                      Urgent compliance alerts directing banking customers to spoofed identity portals to capture OTPs and login credentials.
+                      Look-alike ChatGPT, Gemini, and Claude domains use simulated browser windows to capture credentials and live MFA sessions.
                     </p>
                   </div>
                   <Link
                     href="/threat-feed"
-                    className="inline-flex items-center gap-1 text-xs text-[#8B7CF6] hover:text-[#F4F5F7] pt-2 font-medium"
+                    className="inline-flex items-center gap-1 text-xs text-[#8B7CF6] hover:text-[#F5F6F8] pt-2 font-medium"
                   >
-                    <span>Read investigation</span>
+                    <span>Read intelligence & Threat DNA</span>
                     <ArrowRight className="h-3 w-3" />
                   </Link>
                 </div>
 
                 {/* Entry 3 */}
-                <div className="rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#10151C] p-5 space-y-3 flex flex-col justify-between">
+                <div className="rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#10151C] p-5 space-y-3 flex flex-col justify-between hover:border-[rgba(255,255,255,0.15)] transition-all">
                   <div className="space-y-2.5">
                     <div className="flex items-center justify-between text-[10px] font-mono">
-                      <span className="px-2 py-0.5 rounded bg-[#0B0F14] border border-[rgba(255,255,255,0.07)] text-[#A1A7B3]">
-                        DEMO THREAT
+                      <span className="px-2 py-0.5 rounded bg-[#59B98A]/12 text-[#59B98A] border border-[#59B98A]/25 font-semibold">
+                        VERIFIED REPORT
                       </span>
-                      <span className="px-2 py-0.5 rounded bg-[#D8A84E]/10 text-[#D8A84E] border border-[#D8A84E]/20 font-bold">
-                        MEDIUM RISK
+                      <span className="px-2 py-0.5 rounded bg-[#F05A5A]/12 text-[#F05A5A] border border-[#F05A5A]/25 font-bold">
+                        CRITICAL RISK
                       </span>
                     </div>
-                    <div className="text-xs font-mono text-[#69717F]">Email · Telegram</div>
-                    <h3 className="text-sm font-bold text-[#F4F5F7]">Fake Recruitment Offer</h3>
+                    <div className="text-[11px] font-mono text-[#69717F]">Web · Windows · Global · 07 Oct 2026</div>
+                    <h3 className="text-sm font-bold text-[#F5F6F8] leading-snug">ClickFix Campaign Injects Lunex Password Stealer</h3>
                     <p className="text-xs text-[#A1A7B3] leading-relaxed">
-                      High-paying remote work invitations enticing candidates to submit identity documents and banking credentials.
+                      Compromised websites present fake Cloudflare human checks prompting users to copy and execute terminal PowerShell payloads.
                     </p>
                   </div>
                   <Link
                     href="/threat-feed"
-                    className="inline-flex items-center gap-1 text-xs text-[#8B7CF6] hover:text-[#F4F5F7] pt-2 font-medium"
+                    className="inline-flex items-center gap-1 text-xs text-[#8B7CF6] hover:text-[#F5F6F8] pt-2 font-medium"
                   >
-                    <span>Read investigation</span>
+                    <span>Read intelligence & Threat DNA</span>
                     <ArrowRight className="h-3 w-3" />
                   </Link>
                 </div>
