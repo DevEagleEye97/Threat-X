@@ -14,6 +14,7 @@ import {
   FileCheck,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Spotlight, BorderBeam } from '@/components/motion';
 
 export interface ThreatSubmitPayload {
   type: InvestigationInputType;
@@ -185,9 +186,12 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
   return (
     <div className="w-full space-y-4">
       {/* Primary Workstation Card */}
-      <div className="rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#10151C] p-4 sm:p-5 shadow-2xl">
+      <div className="relative overflow-hidden rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#10151C] p-4 sm:p-5 shadow-2xl">
+        <Spotlight fill="rgba(118, 103, 232, 0.12)" size={380} />
+        <BorderBeam size={240} duration={12} colorFrom="#7667E8" colorTo="#8B7CF6" />
+        
         {/* Tab switcher */}
-        <div className="flex items-center gap-1 mb-4 pb-3 border-b border-[rgba(255,255,255,0.07)] overflow-x-auto">
+        <div className="relative z-10 flex items-center gap-1 mb-4 pb-3 border-b border-[rgba(255,255,255,0.07)] overflow-x-auto">
           {TABS.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.type;
