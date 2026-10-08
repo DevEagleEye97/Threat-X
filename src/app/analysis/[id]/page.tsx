@@ -130,9 +130,9 @@ export default function AnalysisResultPage() {
       </div>
 
       {/* FORENSIC CASE FILE CONTAINER */}
-      <div className="rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] divide-y divide-[rgba(255,255,255,0.07)] shadow-2xl">
+      <div className="threat-glass divide-y divide-[rgba(255,255,255,0.07)] shadow-2xl overflow-hidden">
         {/* CASE FILE HEADER */}
-        <div className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#10151C] relative overflow-hidden">
+        <div className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#10151C]/90 relative overflow-hidden">
           <div className="space-y-1 relative z-10">
             <div className="flex items-center gap-2.5">
               <span className="font-mono text-xs font-bold text-[#F4F5F7] tracking-wider flex items-center gap-1">

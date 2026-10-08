@@ -104,7 +104,7 @@ export default function SiteCheckPage() {
 
           {/* Input Form */}
           <form onSubmit={handleSubmit} className="space-y-3">
-            <div className="relative flex items-center rounded-md border border-[rgba(255,255,255,0.07)] bg-[#10151C] focus-within:border-[#7667E8] transition-colors">
+            <div className="relative flex items-center rounded-xl threat-glass-input p-1">
               <Globe className="h-4 w-4 text-[#69717F] ml-3.5 shrink-0" />
               <input
                 type="text"
@@ -117,7 +117,7 @@ export default function SiteCheckPage() {
               <button
                 type="submit"
                 disabled={isLoading || !urlInput.trim()}
-                className="mr-1.5 flex items-center gap-1.5 px-4 py-2 rounded-md bg-[#7667E8] text-[#F4F5F7] hover:bg-[#8B7CF6] font-semibold text-xs transition-colors disabled:opacity-40 shrink-0"
+                className="mr-1 flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-[#7667E8] text-[#F4F5F7] hover:bg-[#8B7CF6] font-semibold text-xs transition-colors disabled:opacity-40 shrink-0"
               >
                 <span>{isLoading ? 'Assessing…' : 'Run Site Check →'}</span>
               </button>
@@ -141,7 +141,7 @@ export default function SiteCheckPage() {
         {result && (
           <div className="space-y-10 animate-in fade-in duration-200 border-t border-[rgba(255,255,255,0.07)] pt-10">
             {/* Header Record */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#10151C]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 threat-glass shadow-xl">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-xs font-bold text-[#7667E8]">{result.id.toUpperCase()}</span>

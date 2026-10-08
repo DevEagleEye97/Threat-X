@@ -185,10 +185,10 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
 
   return (
     <div className="w-full space-y-4">
-      {/* Primary Workstation Card */}
-      <div className="relative overflow-hidden rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#10151C] p-4 sm:p-5 shadow-2xl">
-        <Spotlight fill="rgba(118, 103, 232, 0.12)" size={380} />
-        <BorderBeam size={240} duration={12} colorFrom="#7667E8" colorTo="#8B7CF6" />
+      {/* Primary Workstation Card with Threat Glass */}
+      <div className="threat-glass-input p-4 sm:p-6 shadow-2xl relative overflow-hidden">
+        <Spotlight fill="rgba(118, 103, 232, 0.14)" size={420} />
+        <BorderBeam size={260} duration={12} colorFrom="#7667E8" colorTo="#8B7CF6" />
         
         {/* Tab switcher */}
         <div className="relative z-10 flex items-center gap-1 mb-4 pb-3 border-b border-[rgba(255,255,255,0.07)] overflow-x-auto">

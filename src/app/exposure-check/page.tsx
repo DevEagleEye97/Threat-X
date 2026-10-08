@@ -229,7 +229,7 @@ export default function ExposureCheckPage() {
       {activeTab === 'email' && (
         <div className="space-y-6">
           <form onSubmit={handleEmailCheck} className="space-y-3">
-            <div className="relative flex items-center rounded-md border border-[rgba(255,255,255,0.07)] bg-[#10151C] focus-within:border-[#7667E8] transition-colors">
+            <div className="relative flex items-center rounded-xl threat-glass-input p-1">
               <input
                 type="email"
                 value={emailInput}
@@ -241,7 +241,7 @@ export default function ExposureCheckPage() {
               <button
                 type="submit"
                 disabled={isCheckingEmail || !emailInput.trim()}
-                className="absolute right-1.5 flex items-center gap-1.5 px-3.5 py-2 rounded-md bg-[#7667E8] text-[#F4F5F7] hover:bg-[#8B7CF6] font-semibold text-xs transition-colors disabled:opacity-40"
+                className="mr-1 flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-[#7667E8] text-[#F4F5F7] hover:bg-[#8B7CF6] font-semibold text-xs transition-colors disabled:opacity-40 shrink-0"
               >
                 <span>{isCheckingEmail ? 'Checking…' : 'Check Exposure →'}</span>
               </button>
@@ -364,13 +364,13 @@ export default function ExposureCheckPage() {
       {activeTab === 'password' && (
         <div className="space-y-6">
           <form onSubmit={handlePasswordCheck} className="space-y-3">
-            <div className="relative flex items-center rounded-md border border-[rgba(255,255,255,0.07)] bg-[#10151C] focus-within:border-[#7667E8] transition-colors">
+            <div className="relative flex items-center rounded-xl threat-glass-input p-1">
               <input
                 type={showPassword ? 'text' : 'password'}
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
                 placeholder="Enter password to verify against breach datasets…"
-                className="w-full bg-transparent px-4 py-3 text-xs sm:text-sm text-[#F4F5F7] placeholder:text-[#69717F] focus:outline-none font-mono pr-28"
+                className="w-full bg-transparent px-4 py-3 text-xs sm:text-sm text-[#F4F5F7] placeholder:text-[#69717F] focus:outline-none font-mono pr-36"
                 required
               />
               <div className="absolute right-2 flex items-center gap-2">
@@ -386,7 +386,7 @@ export default function ExposureCheckPage() {
                 <button
                   type="submit"
                   disabled={isCheckingPassword || !passwordInput}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#7667E8] text-[#F4F5F7] hover:bg-[#8B7CF6] font-semibold text-xs transition-colors disabled:opacity-40"
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#7667E8] text-[#F4F5F7] hover:bg-[#8B7CF6] font-semibold text-xs transition-colors disabled:opacity-40 shrink-0"
                 >
                   <span>{isCheckingPassword ? 'Hashing…' : 'Check Password'}</span>
                 </button>

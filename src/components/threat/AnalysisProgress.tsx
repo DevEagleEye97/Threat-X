@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Check, Shield, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { InvestigationInputType } from '@/types/investigation';
+import { BorderBeam } from '@/components/motion';
 
 interface AnalysisProgressProps {
   targetInput?: string;
@@ -126,9 +127,11 @@ export function AnalysisProgress({
         </p>
       </div>
 
-      {/* Pipeline Steps Card */}
-      <div className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#11151B] p-4 sm:p-5 space-y-3">
-        <div className="space-y-2.5">
+      {/* Frosted Investigation Pipeline Steps Card */}
+      <div className="threat-glass p-5 sm:p-6 space-y-4 shadow-2xl relative overflow-hidden">
+        <BorderBeam size={200} duration={8} colorFrom="#7667E8" colorTo="#59B98A" />
+
+        <div className="space-y-3 relative z-10">
           {UNIVERSAL_PIPELINE_STEPS.map((step, idx) => {
             const isFinished = idx < currentStepIndex;
             const isCurrent = idx === currentStepIndex;
