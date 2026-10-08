@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { cn, formatTimeAgo } from '@/lib/utils';
 import { getSeverityColor } from '@/lib/risk/severity';
+import { TextScramble, GlowEffect } from '@/components/motion';
 
 export default function AnalysisResultPage() {
   const params = useParams();
@@ -131,11 +132,14 @@ export default function AnalysisResultPage() {
       {/* FORENSIC CASE FILE CONTAINER */}
       <div className="rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] divide-y divide-[rgba(255,255,255,0.07)] shadow-2xl">
         {/* CASE FILE HEADER */}
-        <div className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#10151C]">
-          <div className="space-y-1">
+        <div className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#10151C] relative overflow-hidden">
+          <div className="space-y-1 relative z-10">
             <div className="flex items-center gap-2.5">
-              <span className="font-mono text-xs font-bold text-[#F4F5F7] tracking-wider">
-                INVESTIGATION #{investigation.id.toUpperCase()}
+              <span className="font-mono text-xs font-bold text-[#F4F5F7] tracking-wider flex items-center gap-1">
+                <span>INVESTIGATION #</span>
+                <TextScramble duration={600} characterSet="0123456789ABCDEF">
+                  {investigation.id.toUpperCase()}
+                </TextScramble>
               </span>
               <span className="px-2 py-0.5 rounded text-[10px] font-mono border border-[rgba(255,255,255,0.07)] bg-[#0B0F14] text-[#A1A7B3] uppercase">
                 {investigation.inputType || 'URL'}
@@ -146,21 +150,26 @@ export default function AnalysisResultPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span
-              className={cn(
-                'px-3 py-1 rounded-md text-xs font-mono font-bold border tracking-wider',
-                investigation.risk.score >= 80
-                  ? 'border-[#F05A5A]/30 bg-[#F05A5A]/10 text-[#F05A5A]'
-                  : investigation.risk.score >= 60
-                  ? 'border-[#F05A5A]/30 bg-[#F05A5A]/10 text-[#F05A5A]'
-                  : investigation.risk.score >= 20
-                  ? 'border-[#D8A84E]/30 bg-[#D8A84E]/10 text-[#D8A84E]'
-                  : 'border-[#59B98A]/30 bg-[#59B98A]/10 text-[#59B98A]'
+          <div className="flex items-center gap-2 relative z-10">
+            <div className="relative">
+              {investigation.risk.score >= 80 && (
+                <GlowEffect color="#F05A5A" opacity={0.25} blur={16} pulse={true} />
               )}
-            >
-              {investigation.risk.severity} RISK
-            </span>
+              <span
+                className={cn(
+                  'px-3 py-1 rounded-md text-xs font-mono font-bold border tracking-wider inline-block',
+                  investigation.risk.score >= 80
+                    ? 'border-[#F05A5A]/40 bg-[#F05A5A]/15 text-[#F05A5A]'
+                    : investigation.risk.score >= 60
+                    ? 'border-[#F05A5A]/30 bg-[#F05A5A]/10 text-[#F05A5A]'
+                    : investigation.risk.score >= 20
+                    ? 'border-[#D8A84E]/30 bg-[#D8A84E]/10 text-[#D8A84E]'
+                    : 'border-[#59B98A]/30 bg-[#59B98A]/10 text-[#59B98A]'
+                )}
+              >
+                {investigation.risk.severity} RISK
+              </span>
+            </div>
           </div>
         </div>
 

@@ -455,7 +455,7 @@ export default function ThreatFeedPage() {
               return (
                 <article
                   key={story.id}
-                  className="rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#10151C] p-6 sm:p-7 space-y-6 hover:border-[rgba(255,255,255,0.15)] transition-all shadow-md overflow-hidden"
+                  className="content-auto gpu-accelerated rounded-lg border border-[rgba(255,255,255,0.08)] bg-[#10151C] p-6 sm:p-7 space-y-6 hover:border-[rgba(255,255,255,0.15)] transition-all shadow-md overflow-hidden"
                 >
                   {/* Metadata Header */}
                   <div className="flex flex-wrap items-center justify-between gap-3 text-xs border-b border-[rgba(255,255,255,0.07)] pb-4">
