@@ -102,7 +102,7 @@ export function AnalysisProgress({
 
         <div className="flex items-center gap-2">
           <span className="px-2 py-0.5 rounded border border-[rgba(255,255,255,0.08)] bg-[#11151B] text-[10px] font-mono text-[#9298A5]">
-            AIR-GAPPED ANALYSIS
+            ISOLATED WORKFLOW
           </span>
         </div>
       </div>
@@ -122,7 +122,7 @@ export function AnalysisProgress({
           </span>
         </div>
         <p className="text-xs text-[#9298A5]">
-          Air-gapped extraction and deterministic threat assessment without client interaction.
+          Isolated server-side extraction and deterministic threat assessment without client browser exposure.
         </p>
       </div>
 

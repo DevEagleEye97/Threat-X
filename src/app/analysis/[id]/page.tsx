@@ -142,7 +142,7 @@ export default function AnalysisResultPage() {
               </span>
             </div>
             <div className="text-[11px] font-mono text-[#69717F]">
-              Recorded {formatTimeAgo(investigation.createdAt)} · Air-Gapped Sandbox · Zero Client Exposure
+              Recorded {formatTimeAgo(investigation.createdAt)} · Isolated Execution Sandbox · Zero Client Exposure
             </div>
           </div>
 

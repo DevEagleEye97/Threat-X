@@ -41,7 +41,7 @@ export function HowItWorksSteps() {
           How THREATX Works
         </h3>
         <p className="text-xs text-slate-500">
-          Zero-risk air-gapped investigation pipeline
+          Client-isolated threat investigation pipeline
         </p>
       </div>
 

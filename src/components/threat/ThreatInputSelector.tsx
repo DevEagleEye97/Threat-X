@@ -82,12 +82,17 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
   // Designated demo vectors clearly marked as demonstration data
   const DEMO_EXAMPLES = [
     {
+      label: 'WhatsApp Wedding APK (Killer Demo)',
+      type: 'message' as InvestigationInputType,
+      content: "Hey bro ❤️\nYou're invited to my wedding!\nDownload invitation card:\nwedding_invitation.apk\nhttps://wedding-invite.download-service.example.net/card.apk",
+    },
+    {
       label: 'Fake delivery link',
       type: 'url' as InvestigationInputType,
       content: 'https://track-package.delivery-notice.example.net',
     },
     {
-      label: 'Fake KYC message',
+      label: 'Fake KYC alert',
       type: 'message' as InvestigationInputType,
       content: 'URGENT: Your KYC status has expired. Complete identity verification at https://login-verify.example-auth.org/service within 24 hours to prevent account suspension.',
     },
@@ -97,9 +102,9 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
       content: 'Congratulations! Selected for Remote Project Specialist role ($55/hr). Verify identity and payment details at https://login-verify.example-auth.org/onboarding to claim position.',
     },
     {
-      label: 'Suspicious APK message',
+      label: 'ClickFix terminal lure',
       type: 'message' as InvestigationInputType,
-      content: 'Security Alert: Critical mobile banking security update. Download and install security-patch-v3.apk from https://track-package.delivery-notice.example.net/apk to maintain access.',
+      content: 'Cloudflare Verification: Press Windows Key + R, paste powershell -e aWV4... and press Enter to verify you are human.',
     },
     {
       label: 'Fake banking login',

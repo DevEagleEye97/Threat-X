@@ -19,7 +19,7 @@ const WORKFLOW_STEPS = [
     num: '01',
     name: 'INPUT',
     title: 'User Submits Suspicious Content',
-    desc: 'Users provide a link, screenshot, message, email, or QR code without opening it. THREATX isolates the payload in air-gapped memory, neutralizing client browser exploitation.',
+    desc: 'Users provide a link, screenshot, message, email, or QR code without opening it. THREATX isolates the payload in ephemeral server memory, neutralizing client browser exploitation.',
     layer: 'Boundary Isolation',
   },
   {
@@ -85,7 +85,7 @@ const COMPARISONS = [
   {
     dim: 'Client Exposure',
     blackBox: 'Often navigates or renders iframes directly in user browsers',
-    threatx: 'Complete air-gapped sandboxing with DNS-level SSRF pre-flight validation',
+    threatx: 'Complete isolated server-side sandboxing with DNS-level SSRF pre-flight validation',
   },
   {
     dim: 'Post-Exposure Guidance',

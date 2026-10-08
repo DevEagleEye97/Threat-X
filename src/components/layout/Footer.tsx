@@ -21,7 +21,7 @@ export function Footer() {
               Don&apos;t click it. Investigate it.
             </p>
             <p className="text-[13px] text-[#A1A7B3] max-w-md leading-relaxed font-sans">
-              Open-source digital threat investigation platform enabling secure, air-gapped inspection of untrusted digital content before interaction.
+              Open-source digital threat investigation platform enabling secure, isolated inspection of untrusted digital content before interaction.
             </p>
             <div className="pt-2">
               <TypewriterStatement />

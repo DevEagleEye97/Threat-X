@@ -166,6 +166,13 @@ function seedInitialHistory(store: Map<string, InvestigationResult>) {
         { step: 1, title: 'Disconnect Wi-Fi', instruction: 'Disconnect network immediately.', priority: 'immediate', actionType: 'endpoint_scan' },
         { step: 2, title: 'Delete file', instruction: 'Delete downloaded file without opening.', priority: 'immediate', actionType: 'endpoint_scan' },
       ],
+      installed_apk: [
+        { step: 1, title: 'Enable Airplane Mode Immediately', instruction: 'Cut off mobile data and Wi-Fi to stop remote command-and-control communication.', priority: 'immediate', actionType: 'endpoint_scan' },
+        { step: 2, title: 'Boot into Android Safe Mode', instruction: 'Power down and hold Volume Down to boot Safe Mode so the malicious background service cannot run.', priority: 'immediate', actionType: 'endpoint_scan' },
+        { step: 3, title: 'Revoke Accessibility & Admin Permissions', instruction: 'Go to Settings → Apps → Special App Access → Device Admin Apps and disable the suspicious app.', priority: 'immediate', actionType: 'endpoint_scan' },
+        { step: 4, title: 'Uninstall Malicious APK', instruction: 'Uninstall the payload package from Apps Manager and scan with Google Play Protect.', priority: 'high', actionType: 'endpoint_scan' },
+        { step: 5, title: 'Report to Cyber Crime Cell (1930)', instruction: 'In India, report unauthorized banking access immediately via cybercrime.gov.in or helpline 1930.', priority: 'standard', actionType: 'report_incident' },
+      ],
       sent_money: [
         { step: 1, title: 'Emergency bank recall', instruction: 'Contact bank fraud desk immediately to recall wire.', priority: 'immediate', actionType: 'bank_contact' },
       ],

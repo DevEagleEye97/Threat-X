@@ -11,12 +11,13 @@ interface IncidentOptionProps {
 }
 
 const STATE_OPTIONS: Array<{ key: UserIncidentState; label: string }> = [
-  { key: 'not_opened', label: "I haven't interacted with it" },
+  { key: 'not_opened', label: "I haven't interacted" },
   { key: 'opened_link', label: 'I opened the link' },
+  { key: 'downloaded_file', label: 'I downloaded the file' },
+  { key: 'installed_apk', label: 'I installed the APK' },
   { key: 'entered_password', label: 'I entered my password' },
   { key: 'entered_otp', label: 'I entered an OTP' },
   { key: 'entered_payment', label: 'I entered payment info' },
-  { key: 'downloaded_file', label: 'I downloaded something' },
   { key: 'sent_money', label: 'I sent money' },
 ];
 

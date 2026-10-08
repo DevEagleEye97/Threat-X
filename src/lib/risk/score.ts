@@ -38,13 +38,24 @@ export function calculateDeterministicRisk(
       reasons.push(item.description);
     }
 
-    // Malware indicator
+    // Malware indicator / malicious payload delivery
     if (item.category === 'malware_delivery' && !hasMalware) {
       hasMalware = true;
-      rawScore += weights.malwareIndicator;
+      rawScore += 35;
       triggered.push({
-        name: 'Malware Distribution Indicator',
-        weight: weights.malwareIndicator,
+        name: 'Malware Distribution & APK Payload',
+        weight: 35,
+        description: item.title,
+      });
+      reasons.push(item.description);
+    }
+
+    // Social engineering lure
+    if (item.category === 'social_engineering') {
+      rawScore += 25;
+      triggered.push({
+        name: 'Social Engineering & Deceptive Pretext',
+        weight: 25,
         description: item.title,
       });
       reasons.push(item.description);
@@ -55,7 +66,7 @@ export function calculateDeterministicRisk(
       hasBrandSpoof = true;
       rawScore += weights.brandImpersonation;
       triggered.push({
-        name: 'Brand Impersonation / Typosquatting',
+        name: 'Brand Impersonation / Deceptive Naming',
         weight: weights.brandImpersonation,
         description: item.title,
       });
@@ -121,13 +132,23 @@ export function calculateDeterministicRisk(
     }
   }
 
-  // Compound multiplier: If both Brand Impersonation AND Credential Harvesting exist, boost severity
+  // Compound multiplier 1: Brand Spoof + Credential Harvest
   if (hasBrandSpoof && hasCredHarvesting) {
     rawScore += 15;
     triggered.push({
       name: 'Compound Target Affinity (Brand Spoof + Auth Harvest)',
       weight: 15,
       description: 'Concurrent brand spoofing and authentication parameters dramatically increase phishing probability.',
+    });
+  }
+
+  // Compound multiplier 2: Malicious Payload + Social Engineering Lure (Wedding APK pattern)
+  if (hasMalware) {
+    rawScore += 16;
+    triggered.push({
+      name: 'High-Impact Sideload Delivery (Malicious APK)',
+      weight: 16,
+      description: 'Unauthorized Android package delivery combined with social messaging context constitutes a critical device compromise threat.',
     });
   }
 

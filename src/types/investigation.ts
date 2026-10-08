@@ -38,6 +38,7 @@ export type UserIncidentState =
   | 'entered_otp'
   | 'entered_payment'
   | 'downloaded_file'
+  | 'installed_apk'
   | 'sent_money';
 
 export interface IncidentActionStep {

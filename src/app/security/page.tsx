@@ -41,7 +41,7 @@ const SECURITY_SECTIONS: SectionDoc[] = [
   {
     id: 'input-validation',
     title: '2. Input Isolation & Untrusted Target Processing',
-    badge: 'AIR-GAPPED EXECUTION',
+    badge: 'ISOLATED EXECUTION',
     summary: 'Every submitted URL, screenshot, message, or file is treated as hostile adversary input. No client browser ever executes untrusted destinations.',
     points: [
       'Zero client-side network connections or iframe renders of untrusted target servers.',
@@ -188,7 +188,7 @@ export default function SecurityPage() {
         </h1>
 
         <p className="text-xs sm:text-sm text-[#A1A7B3] leading-relaxed">
-          THREATX is engineered from first principles around air-gapped isolation, deterministic mathematical scoring, zero client execution, and transparent evidence synthesis.
+          THREATX is engineered from first principles around isolated analysis workflows, deterministic mathematical scoring, zero client execution, and transparent evidence synthesis.
         </p>
       </div>
 
@@ -197,7 +197,7 @@ export default function SecurityPage() {
         <div className="rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#10151C] p-4 space-y-2">
           <div className="flex items-center gap-2 text-[#7667E8] font-mono text-xs font-bold">
             <Lock className="h-4 w-4" />
-            <span>AIR-GAPPED BY DESIGN</span>
+            <span>ISOLATED BY DESIGN</span>
           </div>
           <p className="text-xs text-[#A1A7B3] leading-relaxed">
             Your browser never navigates to, loads scripts from, or renders frames of submitted URLs or targets.

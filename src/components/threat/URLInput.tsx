@@ -160,7 +160,7 @@ export function URLInput({ onAnalyze, isLoading = false }: URLInputProps) {
         <div>
           <h4 className="font-semibold text-slate-200">Zero-Risk Server Isolation</h4>
           <p className="mt-1 text-slate-400 leading-relaxed">
-            THREATX analyzes suspicious URLs server-side in ephemeral, air-gapped micro-sandboxes. We never trigger tracking beacons or execute payload scripts client-side.
+            THREATX analyzes suspicious URLs server-side in ephemeral, isolated micro-sandboxes. We never trigger tracking beacons or execute payload scripts client-side.
           </p>
         </div>
       </div>

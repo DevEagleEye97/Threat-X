@@ -121,31 +121,91 @@ export async function POST(req: NextRequest) {
   // 6. Deterministic Heuristics Analysis
   let heuristicsEvidence = runDeterministicHeuristics(urlDetails);
 
-  // If text message or email, add textual threat indicators
-  if (inputType === 'message' || inputType === 'email') {
+  // If text message, email, or visual payload, add rich heuristic indicators
+  if (inputType === 'message' || inputType === 'email' || inputType === 'screenshot' || inputType === 'qr') {
     const lower = rawContent.toLowerCase();
-    if (lower.includes('urgent') || lower.includes('immediately') || lower.includes('within 24 hours') || lower.includes('suspended')) {
+
+    // 1. APK / Mobile Sideloading Detection
+    if (lower.includes('.apk') || lower.includes('invitation.apk') || lower.includes('patch.apk') || lower.includes('app installer') || lower.includes('sideload')) {
+      heuristicsEvidence.push({
+        id: 'msg-apk-delivery',
+        category: 'malware_delivery',
+        title: 'Unauthorized Android Package (APK) Sideloading Lure',
+        description: 'Message attempts to distribute an out-of-band .apk application package outside authorized app stores (Google Play), a primary vector for banking Trojans and SMS interceptors.',
+        severity: 'critical',
+        confidence: 0.96,
+        source: 'Heuristic Payload Analyzer',
+        evidenceType: 'observed',
+      });
+    }
+
+    // 2. Wedding / Personal Social Engineering Lure
+    if (lower.includes('wedding') || lower.includes('hey bro') || lower.includes('invitation') || lower.includes('marriage') || lower.includes('family')) {
+      heuristicsEvidence.push({
+        id: 'msg-personal-lure',
+        category: 'social_engineering',
+        title: 'High-Trust Social Engineering Lure (Personal Event Theme)',
+        description: 'Adversary leverages personal or emotional relationships (wedding invitation, brother/friend pretext) to disarm victim suspicion and bypass security reluctance.',
+        severity: 'high',
+        confidence: 0.94,
+        source: 'Heuristic Context Engine',
+        evidenceType: 'detected',
+      });
+    }
+
+    // 3. Urgency & Coercion
+    if (lower.includes('urgent') || lower.includes('immediately') || lower.includes('within 24 hours') || lower.includes('suspended') || lower.includes('restricted') || lower.includes('hold')) {
       heuristicsEvidence.push({
         id: 'msg-urgency',
         category: 'social_engineering',
         title: 'Psychological Coercion & Artificial Urgency',
-        description: 'Text creates false urgency threatening account lockout or irreversible action.',
+        description: 'Text induces artificial urgency threatening immediate account lockout, service cancellation, or irreversible penalty.',
         severity: 'high',
         confidence: 0.92,
         source: 'Heuristic Text Parser',
         evidenceType: 'observed',
       });
     }
-    if (lower.includes('bank') || lower.includes('account') || lower.includes('postal') || lower.includes('delivery') || lower.includes('package')) {
+
+    // 4. Institutional / Banking / Postal Impersonation
+    if (lower.includes('bank') || lower.includes('account') || lower.includes('postal') || lower.includes('delivery') || lower.includes('package') || lower.includes('track-package')) {
       heuristicsEvidence.push({
         id: 'msg-impersonation',
         category: 'brand_impersonation',
-        title: 'Institutional Impersonation Patterns',
-        description: 'Message references banking or logistical institutions to induce credibility.',
+        title: 'Institutional & Logistical Impersonation',
+        description: 'Message references commercial banking, delivery logistics, or courier networks to fabricate legitimacy.',
         severity: 'high',
         confidence: 0.88,
         source: 'Heuristic Text Parser',
         evidenceType: 'detected',
+      });
+    }
+
+    // 5. Government / Statutory / EPFO / KYC Pretext
+    if (lower.includes('kyc') || lower.includes('pension') || lower.includes('uan') || lower.includes('aadhaar') || lower.includes('epfo') || lower.includes('pan card') || lower.includes('life certificate')) {
+      heuristicsEvidence.push({
+        id: 'msg-gov-compliance',
+        category: 'brand_impersonation',
+        title: 'Government / Statutory Compliance Deception',
+        description: 'Message impersonates statutory bodies or mandatory compliance directives to compel submission of national identification or banking credentials.',
+        severity: 'critical',
+        confidence: 0.95,
+        source: 'Heuristic Compliance Inspector',
+        evidenceType: 'observed',
+      });
+    }
+
+    // 6. ClickFix / Terminal Command Execution Pretext
+    if (lower.includes('verify you are human') || lower.includes('powershell') || lower.includes('windows key') || lower.includes('ctrl+v') || lower.includes('run command')) {
+      heuristicsEvidence.push({
+        id: 'msg-clickfix-execution',
+        category: 'malware_delivery',
+        title: 'ClickFix Deceptive Terminal Command Execution',
+        description: 'Deceptive modal instructs user to copy and execute terminal commands, directly executing in-memory stealer payloads (Lunex Stealer pattern).',
+        severity: 'critical',
+        confidence: 0.98,
+        source: 'Heuristic Execution Inspector',
+        evidenceType: 'observed',
       });
     }
   }

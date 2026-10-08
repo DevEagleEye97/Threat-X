@@ -146,6 +146,36 @@ export const INCIDENT_PLAYBOOKS: Record<UserIncidentState, IncidentActionStep[]>
       actionType: 'endpoint_scan',
     },
   ],
+  installed_apk: [
+    {
+      step: 1,
+      title: 'Turn on Airplane Mode immediately',
+      instruction: 'Instantly toggle Airplane Mode and disconnect Wi-Fi / Mobile Data to cut off live Command & Control (C2) communication and ongoing SMS exfiltration.',
+      priority: 'immediate',
+      actionType: 'endpoint_scan',
+    },
+    {
+      step: 2,
+      title: 'Boot into Android Safe Mode & Uninstall APK',
+      instruction: 'Hold Power → long-press "Power off" to reboot into Safe Mode. Navigate to Settings → Apps → Installed Apps, find the unauthorized APK, and uninstall it.',
+      priority: 'immediate',
+      actionType: 'endpoint_scan',
+    },
+    {
+      step: 3,
+      title: 'Revoke Accessibility & Device Admin privileges',
+      instruction: 'Go to Settings → Accessibility and Settings → Security → Device Admin Apps. Revoke any unrecognized service permissions granted to the APK.',
+      priority: 'immediate',
+      actionType: 'endpoint_scan',
+    },
+    {
+      step: 4,
+      title: 'Rotate banking and email passwords from another device',
+      instruction: 'From a clean laptop or separate phone, change passwords for all banking, email, and social accounts immediately and terminate active sessions.',
+      priority: 'high',
+      actionType: 'password_reset',
+    },
+  ],
   sent_money: [
     {
       step: 1,
