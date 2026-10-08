@@ -48,10 +48,10 @@ export default function HomePage() {
         body: JSON.stringify(payload),
       });
 
-      let data: any;
+      let data: InvestigationResult & { error?: string };
       try {
         const text = await response.text();
-        data = text ? JSON.parse(text) : {};
+        data = text ? JSON.parse(text) : ({} as InvestigationResult & { error?: string });
       } catch {
         throw new Error('Analysis pipeline returned an unexpected response format.');
       }

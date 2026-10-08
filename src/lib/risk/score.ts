@@ -15,7 +15,6 @@ export function calculateDeterministicRisk(
   const evidenceIds: string[] = [];
 
   let hasThreatIntel = false;
-  let hasPhishing = false;
   let hasMalware = false;
   let hasCredHarvesting = false;
   let hasBrandSpoof = false;

@@ -128,7 +128,7 @@ export default function HistoryPage() {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setFilter(tab.id as any)}
+                onClick={() => setFilter(tab.id as 'all' | 'critical' | 'high' | 'medium' | 'clean')}
                 className={cn(
                   'px-2.5 py-1 rounded-md border transition-colors whitespace-nowrap text-[11px]',
                   filter === tab.id

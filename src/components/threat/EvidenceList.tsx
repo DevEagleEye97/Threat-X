@@ -1,8 +1,9 @@
 'use client';
 
 import { EvidenceIndicator } from '@/types/evidence';
+import { RiskSeverity } from '@/types/risk';
 import { ThreatBadge } from './ThreatBadge';
-import { AlertTriangle, Key, Globe, Shield, Bug, Network, Radio } from 'lucide-react';
+import { Key, Globe, Shield, Bug, Network, Radio, AlertTriangle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface EvidenceListProps {
@@ -86,7 +87,7 @@ export function EvidenceList({ evidence }: EvidenceListProps) {
                   {item.title}
                 </span>
                 <ThreatBadge
-                  severity={item.severity.toUpperCase() as any}
+                  severity={item.severity.toUpperCase() as RiskSeverity}
                   className="text-[9px] px-2 py-0.2 shrink-0"
                 />
               </div>

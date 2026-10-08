@@ -8,17 +8,14 @@ interface ThreatMatrixProps {
 
 export function ThreatMatrix({ isInvestigating = false }: ThreatMatrixProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [active, setActive] = useState(isInvestigating);
-
-  useEffect(() => {
-    setActive(isInvestigating);
-  }, [isInvestigating]);
+  const [eventActive, setEventActive] = useState<boolean | null>(null);
+  const active = eventActive !== null ? eventActive : isInvestigating;
 
   useEffect(() => {
     const handleInvestigatingEvent = (e: Event) => {
       const customEvent = e as CustomEvent<{ active?: boolean }>;
       if (typeof customEvent.detail?.active === 'boolean') {
-        setActive(customEvent.detail.active);
+        setEventActive(customEvent.detail.active);
       }
     };
     window.addEventListener('threatx:investigating', handleInvestigatingEvent);

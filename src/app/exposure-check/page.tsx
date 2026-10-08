@@ -1,12 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   UserCheck,
   KeyRound,
   CheckCircle2,
   AlertTriangle,
-  ArrowRight,
   Eye,
   EyeOff,
   Clock,
@@ -71,17 +70,6 @@ export default function ExposureCheckPage() {
     matchCount?: number;
   } | null>(null);
 
-  // Read URL query parameter for email
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const params = new URLSearchParams(window.location.search);
-    const emailParam = params.get('email');
-    if (emailParam) {
-      setEmailInput(emailParam);
-      runEmailCheck(emailParam);
-    }
-  }, []);
-
   // Client-side SHA-1 helper for k-anonymity
   const sha1Hex = async (str: string): Promise<string> => {
     const buffer = new TextEncoder().encode(str);
@@ -90,7 +78,7 @@ export default function ExposureCheckPage() {
     return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('').toUpperCase();
   };
 
-  const runEmailCheck = (email: string) => {
+  const runEmailCheck = useCallback((email: string) => {
     setIsCheckingEmail(true);
     setEmailResult(null);
 
@@ -110,7 +98,21 @@ export default function ExposureCheckPage() {
       });
       setIsCheckingEmail(false);
     }, 600);
-  };
+  }, []);
+
+  // Read URL query parameter for email
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const emailParam = params.get('email');
+    if (emailParam) {
+      const timer = setTimeout(() => {
+        setEmailInput(emailParam);
+        runEmailCheck(emailParam);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [runEmailCheck]);
 
   const handleEmailCheck = (e: React.FormEvent) => {
     e.preventDefault();

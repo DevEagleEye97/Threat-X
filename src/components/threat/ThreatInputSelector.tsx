@@ -9,9 +9,8 @@ import {
   Mail,
   QrCode,
   Upload,
-  ArrowRight,
   AlertCircle,
-  FileCheck,
+  LucideIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Spotlight, BorderBeam } from '@/components/motion';
@@ -33,7 +32,7 @@ interface ThreatInputSelectorProps {
   isLoading?: boolean;
 }
 
-const TABS: Array<{ type: InvestigationInputType; label: string; icon: any }> = [
+const TABS: Array<{ type: InvestigationInputType; label: string; icon: LucideIcon }> = [
   { type: 'url', label: 'URL', icon: Link2 },
   { type: 'screenshot', label: 'Screenshot', icon: ImageIcon },
   { type: 'message', label: 'Message', icon: MessageSquare },
@@ -72,11 +71,14 @@ export function ThreatInputSelector({ onSubmit, isLoading = false }: ThreatInput
     const demoType = params.get('demoType') as InvestigationInputType | null;
     const demoContent = params.get('demoContent');
     if (demoType && demoContent) {
-      setActiveTab(demoType);
-      if (demoType === 'url') setUrlInput(demoContent);
-      if (demoType === 'message') setMessageText(demoContent);
-      if (demoType === 'email') setEmailBody(demoContent);
-      if (demoType === 'qr') setQrDestination(demoContent);
+      const timer = setTimeout(() => {
+        setActiveTab(demoType);
+        if (demoType === 'url') setUrlInput(demoContent);
+        if (demoType === 'message') setMessageText(demoContent);
+        if (demoType === 'email') setEmailBody(demoContent);
+        if (demoType === 'qr') setQrDestination(demoContent);
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, []);
 

@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 2. Body Validation
-    let body: any = {};
+    let body: unknown = {};
     try {
       body = await req.json();
     } catch {

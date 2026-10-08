@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { executeThreatIntelChecks, ThreatIntelProvider } from '@/lib/threat-intel/provider';
 import { MockThreatIntelProvider } from '@/lib/threat-intel/mock';
+import { ThreatIntelMatch } from '@/types/threat';
 
 class FailingTestProvider implements ThreatIntelProvider {
   getProviderName(): string {
@@ -9,7 +10,8 @@ class FailingTestProvider implements ThreatIntelProvider {
   getCapabilities(): string[] {
     return ['test'];
   }
-  async checkUrl(): Promise<any> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async checkUrl(_url: string, _normalizedUrl: string): Promise<ThreatIntelMatch> {
     throw new Error('Remote threat server timeout');
   }
 }

@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 2. Body Validation
-    let body: any = {};
+    let body: unknown = {};
     try {
       body = await req.json();
     } catch {
@@ -119,7 +119,7 @@ export async function POST(req: NextRequest) {
   }
 
   // 6. Deterministic Heuristics Analysis
-  let heuristicsEvidence = runDeterministicHeuristics(urlDetails);
+  const heuristicsEvidence = runDeterministicHeuristics(urlDetails);
 
   // If text message, email, or visual payload, add rich heuristic indicators
   if (inputType === 'message' || inputType === 'email' || inputType === 'screenshot' || inputType === 'qr') {

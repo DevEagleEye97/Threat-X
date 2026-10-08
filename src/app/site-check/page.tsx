@@ -43,10 +43,10 @@ export default function SiteCheckPage() {
         body: JSON.stringify({ url: urlInput.trim() }),
       });
 
-      let data: any;
+      let data: SiteCheckResult & { error?: string };
       try {
         const text = await response.text();
-        data = text ? JSON.parse(text) : {};
+        data = text ? JSON.parse(text) : ({} as SiteCheckResult & { error?: string });
       } catch {
         throw new Error('Site Check service returned an unexpected response format.');
       }
