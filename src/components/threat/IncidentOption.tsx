@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { UserIncidentState, IncidentActionStep } from '@/types/investigation';
-import { ShieldAlert, AlertOctagon, CheckCircle2, Send, Download } from 'lucide-react';
+import { ShieldAlert, CheckCircle2, Send, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface IncidentOptionProps {
@@ -49,24 +49,26 @@ export function IncidentOption({ actionsByState, investigationId }: IncidentOpti
   };
 
   return (
-    <div className="space-y-3">
+    <section role="region" aria-label="Incident Response Playbook" className="space-y-3.5">
       {/* Header */}
       <div className="flex items-center justify-between px-1">
-        <h3 className="font-bold text-xs uppercase tracking-wider text-slate-300 flex items-center gap-2">
-          <ShieldAlert className="h-4 w-4 text-indigo-400" />
-          <span>What should I do?</span>
+        <h3 className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-[#E2E8F0] flex items-center gap-2">
+          <ShieldAlert className="h-4 w-4 text-[#8B7CF6]" aria-hidden="true" />
+          <span>Incident Action Center</span>
         </h3>
-        <span className="text-[11px] font-mono text-slate-500">Action Center</span>
+        <span className="text-[11px] font-mono text-[#64748B]">
+          Tailored Playbook
+        </span>
       </div>
 
-      <div className="rounded-2xl border border-[#1E2738] bg-[#111622] p-5 shadow-2xl space-y-4">
-        {/* Question Prompt */}
+      <div className="threat-panel p-5 sm:p-6 space-y-4">
+        {/* Interaction Assessment Selector */}
         <div className="space-y-2">
-          <div className="text-xs text-slate-300 font-semibold">
-            What happened after you received it?
-          </div>
+          <label className="text-xs text-[#CBD5E1] font-semibold block">
+            What was your interaction with this target?
+          </label>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2" role="group" aria-label="Incident interaction states">
             {STATE_OPTIONS.map((opt) => {
               const isSelected = selectedState === opt.key;
               return (
@@ -74,17 +76,19 @@ export function IncidentOption({ actionsByState, investigationId }: IncidentOpti
                   key={opt.key}
                   type="button"
                   onClick={() => setSelectedState(opt.key)}
+                  aria-pressed={isSelected}
                   className={cn(
-                    'px-3 py-2 rounded-xl text-xs font-semibold border transition-all text-left flex items-center gap-2',
+                    'px-3.5 py-2.5 rounded-xl text-xs font-medium border transition-colors text-left flex items-center gap-2.5',
                     isSelected
-                      ? 'bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/30'
-                      : 'bg-[#0E131E] text-slate-300 border-[#1E2738] hover:bg-[#151D2C]'
+                      ? 'bg-[#7667E8] text-white border-[#8B7CF6] shadow-sm font-semibold'
+                      : 'bg-[#07090D] text-[#94A3B8] border-[rgba(255,255,255,0.08)] hover:bg-[#161B25] hover:text-[#E2E8F0]'
                   )}
                 >
                   <span
+                    aria-hidden="true"
                     className={cn(
-                      'h-2 w-2 rounded-full shrink-0',
-                      isSelected ? 'bg-white' : 'bg-slate-600'
+                      'h-2 w-2 rounded-full shrink-0 transition-colors',
+                      isSelected ? 'bg-white' : 'bg-[#64748B]'
                     )}
                   />
                   <span>{opt.label}</span>
@@ -95,28 +99,27 @@ export function IncidentOption({ actionsByState, investigationId }: IncidentOpti
         </div>
 
         {/* Tailored Response Plan */}
-        <div className="rounded-xl border border-[#1E2738] bg-[#0B0F18] p-4 space-y-3">
-          <div className="flex items-center justify-between pb-2 border-b border-[#1E2738]/50 text-xs">
-            <span className="font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5 font-mono">
-              <span>!</span>
-              <span>Tailored Response Plan</span>
+        <div className="rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#07090D] p-4 space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-[rgba(255,255,255,0.06)] text-xs">
+            <span className="font-mono font-bold uppercase tracking-[0.06em] text-[#22D3EE] flex items-center gap-1.5">
+              <span>Tailored Action Steps</span>
             </span>
-            <span className="text-[10px] font-mono text-slate-500">
-              State: {STATE_OPTIONS.find((o) => o.key === selectedState)?.label}
+            <span className="text-[11px] font-mono text-[#64748B]">
+              Selected State: {STATE_OPTIONS.find((o) => o.key === selectedState)?.label}
             </span>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 pt-1">
             {currentPlaybook.map((step) => (
               <div key={step.step} className="flex items-start gap-3">
-                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-800 border border-slate-700 text-[10px] font-mono font-bold text-slate-200 mt-0.5">
+                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#161B25] border border-[rgba(255,255,255,0.12)] text-[10px] font-mono font-bold text-[#22D3EE] mt-0.5 tabular-nums">
                   {step.step}
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-xs font-semibold text-slate-200">
+                <div className="flex-1 min-w-0 space-y-0.5">
+                  <div className="text-xs font-semibold text-[#E2E8F0]">
                     {step.title}
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-0.5 leading-relaxed">
+                  <p className="text-[12px] text-[#94A3B8] leading-relaxed">
                     {step.instruction}
                   </p>
                 </div>
@@ -125,7 +128,7 @@ export function IncidentOption({ actionsByState, investigationId }: IncidentOpti
           </div>
         </div>
 
-        {/* Action Buttons */}
+        {/* Action Dispatch Buttons */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
           <button
             type="button"
@@ -133,18 +136,18 @@ export function IncidentOption({ actionsByState, investigationId }: IncidentOpti
             className={cn(
               'flex items-center justify-center gap-2 rounded-xl py-2.5 px-4 text-xs font-semibold transition-all',
               ticketDispatched
-                ? 'bg-emerald-600 text-white'
-                : 'bg-indigo-600 text-white hover:bg-indigo-500 active:scale-[0.99] shadow-lg shadow-indigo-600/20'
+                ? 'bg-[#10B981] text-white'
+                : 'bg-[#7667E8] text-white hover:bg-[#8B7CF6] active:scale-[0.99] shadow-sm'
             )}
           >
             {ticketDispatched ? (
               <>
-                <CheckCircle2 className="h-4 w-4" />
-                <span>Ticket #TX-SEC-{investigationId.slice(0, 6)} Dispatched</span>
+                <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+                <span className="font-mono">Ticket #TX-{investigationId.slice(0, 6).toUpperCase()} Dispatched</span>
               </>
             ) : (
               <>
-                <Send className="h-3.5 w-3.5" />
+                <Send className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>Dispatch Incident Ticket</span>
               </>
             )}
@@ -153,13 +156,13 @@ export function IncidentOption({ actionsByState, investigationId }: IncidentOpti
           <button
             type="button"
             onClick={handleExportReport}
-            className="flex items-center justify-center gap-2 rounded-xl py-2.5 px-4 text-xs font-semibold bg-[#161F2E] border border-[#26354D] text-slate-200 hover:text-white hover:bg-[#1E2A3E] transition-colors"
+            className="flex items-center justify-center gap-2 rounded-xl py-2.5 px-4 text-xs font-semibold bg-[#161B25] border border-[rgba(255,255,255,0.10)] text-[#CBD5E1] hover:text-[#E2E8F0] hover:bg-[#1E2738] transition-colors"
           >
-            <Download className="h-3.5 w-3.5" />
-            <span>Export Action Plan</span>
+            <Download className="h-3.5 w-3.5 text-[#22D3EE]" aria-hidden="true" />
+            <span>Export Action Plan (.JSON)</span>
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

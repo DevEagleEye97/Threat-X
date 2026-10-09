@@ -42,11 +42,11 @@ export function getSeverityColor(severity: RiskSeverity): {
       };
     case 'GUARDED':
       return {
-        badgeBg: 'bg-blue-500/15 text-blue-400 border-blue-500/30',
-        badgeText: 'text-blue-400',
-        borderColor: 'border-blue-500/40',
-        accentColor: '#3B82F6',
-        dotColor: 'bg-blue-500',
+        badgeBg: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
+        badgeText: 'text-cyan-400',
+        borderColor: 'border-cyan-500/40',
+        accentColor: '#22D3EE',
+        dotColor: 'bg-cyan-400',
       };
     case 'LOW':
     default:
