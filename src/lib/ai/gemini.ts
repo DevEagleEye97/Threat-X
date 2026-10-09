@@ -1,5 +1,6 @@
 import { AIAnalysisResponse, AIAnalysisResponseSchema } from './schemas';
 import { buildSecureAnalysisPrompt } from './prompts';
+import { validateAndSanitizeAIOutput } from './validation';
 import { NormalizedUrlDetails } from '@/types/investigation';
 import { EvidenceIndicator } from '@/types/evidence';
 import { GoogleGenAI } from '@google/genai';
@@ -133,6 +134,9 @@ export async function runAIThreatReasoning(
   if (openrouterKey) {
     try {
       const model = process.env.OPENROUTER_MODEL || 'google/gemini-2.5-flash';
+      const openRouterController = new AbortController();
+      const openRouterTimeout = setTimeout(() => openRouterController.abort(), 3500);
+
       const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -156,7 +160,10 @@ export async function runAIThreatReasoning(
           response_format: { type: 'json_object' },
           temperature: 0.1,
         }),
+        signal: openRouterController.signal,
       });
+
+      clearTimeout(openRouterTimeout);
 
       if (res.ok) {
         const jsonRes = await res.json();
@@ -170,7 +177,11 @@ export async function runAIThreatReasoning(
           const parsed = JSON.parse(content);
           const validated = AIAnalysisResponseSchema.safeParse(parsed);
           if (validated.success) {
-            return validated.data;
+            const postValidation = validateAndSanitizeAIOutput(validated.data, deterministicScore, deterministicSeverity);
+            if (postValidation.warnings.length > 0) {
+              console.warn('AI output post-validation warnings:', postValidation.warnings);
+            }
+            return postValidation.sanitized;
           } else {
             console.warn('OpenRouter response did not match schema:', validated.error.issues);
           }
@@ -202,7 +213,11 @@ export async function runAIThreatReasoning(
         const parsedJson = JSON.parse(text);
         const validated = AIAnalysisResponseSchema.safeParse(parsedJson);
         if (validated.success) {
-          return validated.data;
+          const postValidation = validateAndSanitizeAIOutput(validated.data, deterministicScore, deterministicSeverity);
+          if (postValidation.warnings.length > 0) {
+            console.warn('Google GenAI output post-validation warnings:', postValidation.warnings);
+          }
+          return postValidation.sanitized;
         }
       }
     } catch (err) {

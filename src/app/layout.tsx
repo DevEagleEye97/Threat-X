@@ -37,9 +37,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} dark bg-[#07090D] text-[#F5F6F8] antialiased`}>
       <body className="min-h-screen flex flex-col bg-[#07090D] text-[#F5F6F8] font-sans selection:bg-[#7667E8]/30 selection:text-[#F5F6F8] relative">
+        {/* Skip to main content link — WCAG 2.2 AA keyboard navigation */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#7667E8] focus:text-white focus:rounded-lg focus:text-sm focus:font-medium focus:outline-none focus:ring-2 focus:ring-white"
+        >
+          Skip to main content
+        </a>
         <ThreatMatrix />
         <Navbar />
-        <div className="flex-1 relative z-10">{children}</div>
+        <main id="main-content" className="flex-1 relative z-10" role="main" aria-label="Investigation content">
+          {children}
+        </main>
         <Footer />
         <BottomNav />
       </body>

@@ -18,6 +18,7 @@ import { validateUrlAgainstSsrf } from '@/lib/security/ssrf';
 import { checkRateLimit } from '@/lib/security/rate-limit';
 import { SECURE_HEADERS } from '@/lib/security/headers';
 import { InvestigationStore } from '@/lib/db/store';
+import { sanitizeInput, sanitizeUrlInput, MAX_INPUT_LENGTH } from '@/lib/security/input-sanitizer';
 import { InvestigationResult, TelemetryEvent } from '@/types/investigation';
 
 const AnalyzeRequestSchema = z.object({
@@ -69,13 +70,23 @@ export async function POST(req: NextRequest) {
   }
 
   const inputType = parseResult.data.type || 'url';
-  const rawContent = parseResult.data.content || parseResult.data.url || '';
+  const rawContentUnsanitized = parseResult.data.content || parseResult.data.url || '';
 
-  if (!rawContent.trim()) {
+  if (!rawContentUnsanitized.trim()) {
     return NextResponse.json(
       { error: 'Please provide content or a URL to investigate.' },
       { status: 400, headers: SECURE_HEADERS }
     );
+  }
+
+  // Input sanitization — enforce length limits and strip injection vectors
+  const sanitized = inputType === 'url'
+    ? sanitizeUrlInput(rawContentUnsanitized)
+    : sanitizeInput(rawContentUnsanitized, MAX_INPUT_LENGTH);
+  const rawContent = sanitized.content;
+
+  if (sanitized.wasTruncated) {
+    console.warn(`Input truncated from ${sanitized.originalLength} chars for investigation`);
   }
 
   // Extract URL depending on input type
